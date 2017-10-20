@@ -1,0 +1,7 @@
+<!-- index.wxml -->
+<view class="container">
+  <import src="./template/form.wxml" />
+  <view wx:for="{{fromData}}">
+    <template is="input" data="{{...item}}" />
+  </view>
+</view>

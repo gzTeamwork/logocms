@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/post",
+    "pages/index/single",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "bold",
+    "navigationBarBackgroundColor": "#d00600",
+    "navigationBarTitleText": "Logo设计需求/标志定制",
+    "navigationBarTextStyle": "white"
+  }
+}

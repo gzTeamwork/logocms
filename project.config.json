@@ -1,0 +1,33 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true
+	},
+	"compileType": "weapp",
+	"libVersion": "1.5.2",
+	"appid": "wxb615cb13ae726095",
+	"projectname": "%E6%A0%87%E5%BF%97%E5%B1%95%E7%A4%BA",
+	"condition": {
+		"weapp": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "上传案例",
+					"pathName": "pages/index/post"
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

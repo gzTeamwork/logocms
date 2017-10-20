@@ -1,0 +1,39 @@
+/**index.wxss**/
+
+.dia-item {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-grow: 1;
+}
+
+.dia-item .label {
+  color: #4d4d4d;
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  font-weight: 500;
+}
+
+.dia-item .label .sign {
+  font-weight: 100;
+  font-size: 85%;
+}
+
+.dia-item .item {
+  width: 100%;
+}
+
+.dia-item .item input {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  border-bottom: 1px solid #ccc;
+  transition: border 1s;
+}
+
+.dia-item .item input:focus {
+  border-bottom: 1px solid #d00600 !important;
+}

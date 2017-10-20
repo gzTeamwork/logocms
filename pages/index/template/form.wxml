@@ -1,0 +1,19 @@
+<template name="input">
+  <view class='dia-item'>
+    <view class='label'>{{lebal}}
+      <text class='sign'>({{isMust?'必填':'选填'}}){{model}}</text>
+    </view>
+    <view class='item'>
+      <block wx:if='{{ model == "input"}}'>
+        <input id='{{name}}' type='text' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}'></input>
+      </block>
+      <block wx:if='{{ model == "select" }}'>
+        <picker id='{{name}}' mode='selector' bindchange="inputEvent" value="{{value}}" range="{{array}}">
+          <view class="picker">
+            当前选择：{{array[value]}}
+          </view>
+        </picker>
+      </block>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,11 @@
+
+var label = '';
+var mode = '';
+var isMust = false;
+
+
+
+module.exports = {
+  
+
+}
