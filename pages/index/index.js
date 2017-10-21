@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp()
 
+var fromParams = {}
+
 Page({
   data: {
     fromData: [
@@ -14,22 +16,28 @@ Page({
       { name: 'user_phone', value: '', lebal: '您的电话', preText: '请填写您的联系方式(手机)', isMust: true, model: 'input' },
       { name: 'user_company', value: '', lebal: '公司名字', preText: '请填写您的公司名', isMust: true, model: 'input' },
     ],
-    fromParams: {
-      'logo_name': 9
-    },
+    fromParams: {},
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //  表单输入事件,同步数据到data
-  inputEvent(event) {
-    if (event.target.id.length > 1) {
-      var data = this.data.fromParams;
-      data[event.target.id] = event.detail.value
-      this.setData({ fromParams: data })
+  inputEvent(e) {
+    if (e.target.id.length > 1) {
+      // var data = this.data.fromParams;
+      // data[e.target.id] = e.detail.value
+      fromParams[e.target.id] = e.detail.value
+      this.setData({ fromParams: fromParams })
     }
-    console.log(event)
+    var fromData = this.data.fromData
+    for (let i = 0; i < fromData.length; i++) {
+      if (fromData[i].name == e.target.id) {
+        fromData[i].value = e.detail.value
+      }
+    }
+    this.setData({ fromData: fromData })
+    console.log(e)
   },
   //事件处理函数
   bindViewTap: function () {

@@ -17,7 +17,8 @@
 				{
 					"id": -1,
 					"name": "上传案例",
-					"pathName": "pages/index/post"
+					"pathName": "pages/index/post",
+					"query": ""
 				}
 			]
 		},
