@@ -1,5 +1,9 @@
 /**index.wxss**/
 
+view {
+  font-size: 28rpx;
+}
+
 .dia-item {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -9,7 +13,7 @@
 .dia-item .label {
   color: #4d4d4d;
   background-color: #f2f2f2;
-  width: 100%;
+  width: auto;
   padding: 0.5rem;
   padding-left: 1rem;
   font-weight: 500;
@@ -20,18 +24,22 @@
   font-size: 85%;
 }
 
-.dia-item .item {
-  width: 100%;
+.dia-item .item, button {
+  width: auto;
+  margin: 1rem;
 }
 
 .dia-item .item input {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  padding: 0.5rem;
-  padding-left: 0;
-  padding-right: 0;
+  width: auto;
   border-bottom: 1px solid #ccc;
   transition: border 1s;
+}
+
+.dia-item .item textarea {
+  border-bottom: 1px solid #ccc;
+  margin: -1rem;
+  width: auto;
+  padding: 1rem;
 }
 
 .dia-item .item input:focus {
