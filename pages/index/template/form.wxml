@@ -9,32 +9,57 @@
 
 
 <template name="label">
-  <view class='label'>{{lebal}}
+  <view class='label' wx:if='{{!noLebal}}'>{{lebal}}
     <text class='sign'>({{isMust?'必填':'选填'}}){{model}}</text>
   </view>
 </template>
 
 <template name='item'>
+
+  <!-- input -->
   <block wx:if='{{ model == "input"}}'>
-    <input id='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}'></input>
+    <input id='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next'></input>
   </block>
+
+  <!-- select -->
   <block wx:if='{{ model == "select" }}'>
     <picker id='{{name}}' mode='selector' bindchange="inputEvent" value="{{value}}" range="{{array}}">
       <view class="picker">{{array[value]}}</view>
     </picker>
   </block>
+
+  <!-- textarea -->
   <block wx:if='{{ model == "textarea" }}'>
     <textarea id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" />
   </block>
+
+  <!-- single -->
   <block wx:if='{{ model == "single" }}'>
     <radio-group style="width:auto;margin:-0.5rem;" id='{{name}}' value='{{value}}' bindchange='inputEvent'>
-      <label wx:for='{{[1,2,3,4,5,6]}}' wx:key='item' style='width:33%;display:inline-block'>
+      <label wx:for='{{fromModule.logoStyle}}' wx:for-index="key" wx:key='*this' style='width:33%;display:inline-block'>
         <view style='padding:0.5rem'>
-          <image mode='aspectFill' src='../../assets/imgs/{{item}}.jpg' style='width:200rpx;height:164rpx'></image>
-          <radio checked='{{item == value}}' value='{{item}}'>{{single.labels[item-1]}}</radio>
+          <image mode='aspectFill' src='../../assets/imgs/{{key+1}}.jpg' style='width:200rpx;height:164rpx'></image>
+          <radio checked='{{key == value}}' value='{{key}}'>{{item.name}}</radio>
         </view>
       </label>
     </radio-group>
+  </block>
+  <!-- multi -->
+  <block wx:if='{{ model == "multi" }}'>
+    <checkbox-group id='{{name}}' value='{{value}}' bindchange="viItemsChange">
+      <label class="checkbox" wx:for="{{fromModule.viItems}}" wx:key='*this' wx:for-index="key" style='width:33%;display:inline-block'>
+        <view style='padding-top:1rem'>
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+        </view>
+      </label>
+    </checkbox-group>
+  </block>
+  <!-- sepcial -->
+  <block wx:if='{{ model == "total_price"}}'>
+    <view class='total_price'>
+      <view class='lebal'>预计费用</view>
+      <view class='price'>¥{{value}}.00</view>
+    </view>
   </block>
 </template>
 
@@ -59,9 +84,32 @@
   </view>
 </template>
 
-<wxs module="single">
-  var singleText = ['图标标准字', '图标设计字', '单字体设计', '单图标设计', '图文融合', '图标含文字']
+<wxs module="fromModule">
+  var logoStyle = [{
+    name: '图标标准字'
+  }, {
+    name: '图标设计字'
+  }, {
+    name: '单字体设计'
+  }, {
+    name: '单图标设计'
+  }, {
+    name: '图文融合'
+  }, {
+    name: '图标含文字'
+  }]
+  var viItems = [{
+    name: '黑白稿',
+    price: 100
+  }, {
+    name: '印花稿',
+    price: 200
+  }, {
+    name: '标准制图',
+    price: 300
+  }]
   module.exports = {
-    labels: singleText
+    logoStyle: logoStyle,
+    viItems:viItems
   }
 </wxs>

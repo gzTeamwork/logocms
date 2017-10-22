@@ -9,10 +9,9 @@
     <view>策划力 表现力 执行力 </view>
     <view>策略先行 系统导入 资深团队 表现精准 快速反应 高效执行 </view>
     <view>切实帮助企业解决品牌问题，助力品牌成长</view>
-    <button type='default'>点击提交</button>
+    <button type='default' bindtap='bindFromSubmit'>点击提交</button>
     <view>提交后,会有专员跟您联系</view>
     <view>或者</view>
-    <button type='primary'>直接联系我们</button>
+    <button type='primary' bindtap='bindContactUs'>直接联系我们</button>
   </view>
-
 </view>

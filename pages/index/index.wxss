@@ -29,10 +29,11 @@ view {
   margin: 1rem;
 }
 
-.dia-item .item input {
+.dia-item .item input,.dia-item .item picker {
   width: auto;
   border-bottom: 1px solid #ccc;
   transition: border 1s;
+  line-height: 2rem;
 }
 
 .dia-item .item textarea {
@@ -44,4 +45,21 @@ view {
 
 .dia-item .item input:focus {
   border-bottom: 1px solid #d00600 !important;
+}
+
+.dia-item .total_price {
+  background: #d00600;
+  text-align: center;
+  margin: auto;
+  width: 75%;
+  border-radius: 0 0 2rem 2rem;
+  color: white;
+  margin-top: -1rem;
+  padding: 0.5rem;
+}
+
+.dia-item .total_price .label {
+}
+.dia-item .total_price .price{
+  font-size: 200%;
 }
