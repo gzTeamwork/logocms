@@ -26,8 +26,6 @@ Page({
   //  表单输入事件,同步数据到data
   inputEvent(e) {
     if (e.target.id.length > 1) {
-      // var data = this.data.fromParams;
-      // data[e.target.id] = e.detail.value
       fromParams[e.target.id] = e.detail.value
       this.setData({ fromParams: fromParams })
     }
@@ -44,26 +42,50 @@ Page({
     }
     this.setData({ fromData: fromData })
     console.log(e)
-    wx.pageScrollTo({
-      scrollTop: e.target.offsetTop - 60
-    })
+  },
+  //  套餐改变
+  designSetChange(e) {
+    this.inputEvent(e)
+    var setVis = designSetArray[e.detail.value]
+    console.log(setVis);
+    //  轮询套餐下的vi项,设置对应的tof
+    for (let i = 0; i < viItems.length; i++) {
+      let key = findArray(setVis, viItems[i].name);
+      key > -1 ? console.log(viItems[i]) : ''
+      viItems[i].checked = (key > -1);
+    }
+
+
+    // for (let i = 0; i <= setVis.vis.length + 1; i++) {
+    //   let key = findArray(viItems, { id: setVis.vis[i] });
+    //   if (key !== -1) {
+    //     console.log(viItems[key])
+    //     viItems[key].checked = true
+    //   } else {
+    //     viItems[key].checked = false
+    //   }
+    // }
+    console.log(viItems)
+    this.viItemsChange({ target: { id: 'vi_item' }, detail: { value: setViitems } })
   },
   //  VI项改变
   viItemsChange(e) {
-    this.inputEvent(e);
-    console.log(fromModule)
+    // this.inputEvent(e);
+    // console.log(e.target.dataset.price)
+    // console.log(e.detail.value.length)
+    // let total = 0;
+    // for (let i = 0; i < e.detail.value.length; i++) {
+    //   var vi = findArray(viItems, { name: e.detail.value[i] })
+    //   total = total + parseInt(viItems[vi].price)
+    // }
+    // // 汇总报价
+    // var fromData = this.data.fromData
+    // fromData[5].value = total;
+    // this.setData({ fromData: fromData })
   },
   //  提交Logo表单
   bindFromSubmit() {
-    wx.showActionSheet({
-      itemList: this.data.fromData,
-      success: function (res) {
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
+    console.log(this.data.fromData)
   },
   //  直接联系拨打电话
   bindContactUs() {
@@ -71,8 +93,14 @@ Page({
       phoneNumber: '13828471634'
     })
   },
+  viItemChange(e) {
+    console.log(e)
+  },
   //事件处理函数
   onLoad: function () {
+    var fromData = this.data.fromData
+    fromData[2].value = viItems
+    this.setData({ fromData: fromData })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -111,3 +139,135 @@ Page({
     })
   }
 })
+var designSetArray = [{ name: 'Logo设计套餐A', vis: [2, 3, 4] }, { name: 'Logo设计套餐B', vis: [2, 3, 4, 5, 6, 7] }, { name: 'VIS设计套餐', vis: [2, 3, 4, 5, 6, 7, 8, 17] }];
+var viItems = [{
+  id: '2',
+  name: '标志墨稿',
+  price: '200',
+  checked: true
+},
+{
+  id: '3',
+  name: '标志反白图',
+  price: '200',
+  checked: true
+},
+{
+  id: '4',
+  name: '标志标准制图',
+  price: '200',
+  checked: true
+},
+{
+  id: '5',
+  name: '标志方格制图',
+  price: '200',
+  checked: true
+},
+{
+  id: '6',
+  name: '标志比例限定',
+  price: '200',
+  checked: true
+},
+{
+  id: '7',
+  name: '标志色彩展示',
+  price: '200',
+  checked: true
+},
+{
+  id: '16',
+  name: '企业标准色',
+  price: '200',
+  checked: true
+},
+{
+  id: '17',
+  name: '辅助色系列',
+  price: '200',
+  checked: true
+},
+{
+  id: '#',
+  name: '辅助图形',
+  price: '300',
+  checked: true
+},
+{
+  id: '#',
+  name: '名片',
+  price: '300',
+  checked: true
+},
+{
+  id: '4',
+  name: '信封',
+  price: '200',
+  checked: true
+},
+{
+  id: '8',
+  name: '信纸',
+  price: '200',
+  checked: true
+},
+{
+  id: '#',
+  name: 'PPT模板',
+  price: '300',
+  checked: true
+},
+{
+  id: '#',
+  name: '工号牌',
+  price: '300',
+  checked: true
+},
+{
+  id: '#',
+  name: '工作证',
+  price: '300',
+  checked: true
+},
+{
+  id: '77',
+  name: '标识伞',
+  price: '300',
+  checked: true
+},
+{
+  id: '#',
+  name: '标识牌',
+  price: '300',
+  checked: true
+},
+{
+  id: '16',
+  name: '合同书范本',
+  price: 200,
+  checked: true
+}]
+
+function findArray(array, feature, all = true) {
+  for (let index in array) {
+    let cur = array[index];
+    if (feature instanceof Object) {
+      let allRight = true;
+      for (let key in feature) {
+        let value = feature[key];
+        if (cur[key] == value && !all) return index;
+        if (all && cur[key] != value) {
+          allRight = false;
+          break;
+        }
+      }
+      if (allRight) return index;
+    } else {
+      if (cur == feature) {
+        return index;
+      }
+    }
+  }
+  return -1;
+}

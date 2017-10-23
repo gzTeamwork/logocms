@@ -23,7 +23,7 @@
 
   <!-- select -->
   <block wx:if='{{ model == "select" }}'>
-    <picker id='{{name}}' mode='selector' bindchange="inputEvent" value="{{value}}" range="{{array}}">
+    <picker id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}">
       <view class="picker">{{array[value]}}</view>
     </picker>
   </block>
@@ -44,16 +44,18 @@
       </label>
     </radio-group>
   </block>
+
   <!-- multi -->
   <block wx:if='{{ model == "multi" }}'>
-    <checkbox-group id='{{name}}' value='{{value}}' bindchange="viItemsChange">
-      <label class="checkbox" wx:for="{{fromModule.viItems}}" wx:key='*this' wx:for-index="key" style='width:33%;display:inline-block'>
+    <checkbox-group id='{{name}}' bindchange="viItemsChange">
+      <label class="checkbox" wx:for="{{value}}" bindtap='viItemChange' wx:key='*this' wx:for-item="item" style='width:33%;display:inline-block'>
         <view style='padding-top:1rem'>
-          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" data-price='{{item.price}}' />{{item.name}}
         </view>
       </label>
     </checkbox-group>
   </block>
+
   <!-- sepcial -->
   <block wx:if='{{ model == "total_price"}}'>
     <view class='total_price'>
@@ -108,8 +110,100 @@
     name: '标准制图',
     price: 300
   }]
+
+  var viItems = [{
+      id: '2',
+      name: '标志墨稿',
+      price: '200'
+    },
+    {
+      id: '3',
+      name: '标志反白图',
+      price: '200'
+    },
+    {
+      id: '4',
+      name: '标志标准制图',
+      price: '200'
+    },
+    {
+      id: '5',
+      name: '标志方格制图',
+      price: '200'
+    },
+    {
+      id: '6',
+      name: '标志比例限定',
+      price: '200'
+    },
+    {
+      id: '7',
+      name: '标志色彩展示',
+      price: '200'
+    },
+    {
+      id: '16',
+      name: '企业标准色',
+      price: '200'
+    },
+    {
+      id: '17',
+      name: '辅助色系列',
+      price: '200'
+    },
+    {
+      id: '#',
+      name: '辅助图形',
+      price: '300'
+    },
+    {
+      id: '#',
+      name: '名片',
+      price: '300'
+    },
+    {
+      id: '4',
+      name: '信封',
+      price: '200'
+    },
+    {
+      id: '8',
+      name: '信纸',
+      price: '200'
+    },
+    {
+      id: '#',
+      name: 'PPT模板',
+      price: '300'
+    },
+    {
+      id: '#',
+      name: '工号牌',
+      price: '300'
+    },
+    {
+      id: '#',
+      name: '工作证',
+      price: '300'
+    },
+    {
+      id: '77',
+      name: '标识伞',
+      price: '300'
+    },
+    {
+      id: '#',
+      name: '标识牌',
+      price: '300'
+    },
+    {
+      id: '16',
+      name: '合同书范本',
+      price: 200
+    }
+  ]
   module.exports = {
     logoStyle: logoStyle,
-    viItems:viItems
+    viItems: viItems
   }
 </wxs>
