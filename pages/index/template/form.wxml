@@ -10,7 +10,7 @@
 
 <template name="label">
   <view class='label' wx:if='{{!noLebal}}'>{{lebal}}
-    <text class='sign'>({{isMust?'必填':'选填'}}){{model}}</text>
+    <text class='sign'>({{isMust?'必填':'选填'}})</text>
   </view>
 </template>
 
@@ -48,9 +48,9 @@
   <!-- multi -->
   <block wx:if='{{ model == "multi" }}'>
     <checkbox-group id='{{name}}' bindchange="viItemsChange">
-      <label class="checkbox" wx:for="{{value}}" bindtap='viItemChange' wx:key='*this' wx:for-item="item" style='width:33%;display:inline-block'>
+      <label class="checkbox" wx:for="{{value}}" wx:key='*this' wx:for-item="item" style='width:33%;display:inline-block'>
         <view style='padding-top:1rem'>
-          <checkbox value="{{item.name}}" checked="{{item.checked}}" data-price='{{item.price}}' />{{item.name}}
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" data-price='{{item.price}}' disabled='{{item.disable}}' />{{item.name}}
         </view>
       </label>
     </checkbox-group>

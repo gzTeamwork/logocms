@@ -29,13 +29,6 @@ view {
   margin: 1rem;
 }
 
-.dia-item .item input,.dia-item .item picker {
-  width: auto;
-  border-bottom: 1px solid #ccc;
-  transition: border 1s;
-  line-height: 2rem;
-}
-
 .dia-item .item textarea {
   border-bottom: 1px solid #ccc;
   margin: -1rem;
@@ -43,8 +36,16 @@ view {
   padding: 1rem;
 }
 
-.dia-item .item input:focus {
-  border-bottom: 1px solid #d00600 !important;
+.dia-item .item input, .dia-item .item picker {
+  width: auto;
+  border-bottom: 1px solid #ccc;
+  transition: border 1s;
+  line-height: 2rem;
+}
+
+.dia-item .item input:active,.dia-item .item input:focus {
+  transform: border-color;
+  border-color: #d00600;
 }
 
 .dia-item .total_price {
@@ -60,6 +61,7 @@ view {
 
 .dia-item .total_price .label {
 }
-.dia-item .total_price .price{
+
+.dia-item .total_price .price {
   font-size: 200%;
 }
