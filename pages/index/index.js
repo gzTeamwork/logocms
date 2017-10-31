@@ -87,14 +87,23 @@ Page({
       console.log(params)
     }
     let serverUrl = 'http://www.diavision.cn/diavision/public/diavision/index/api'
+    serverUrl = 'http://tiramisu.localhost.com/diavision/index/'
+
     wx.request({
-      url: serverUrl, //仅为示例，并非真实的接口地址
-      data: params[0],
+      url: serverUrl + 'design_submit',
+      method: 'POST',
+      data: params,
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        console.log(res.data)
+        if (res.data.code == 1 && res.statusCode == 200) {
+          //  数据提交成功
+          wx.showToast({
+            title: res.data.msg, icon: 'success', duration: 2000,
+          })
+        }
+        console.log(res)
       }
     })
 
@@ -110,6 +119,24 @@ Page({
   },
   //事件处理函数
   onLoad: function () {
+    let serverUrl = 'http://tiramisu.localhost.com/diavision/index/'
+    //  检查用户是否近期已经提交过..
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: serverUrl+'checkSession',
+            data: {
+              code: res.code
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
+
     var fromData = this.data.fromData
     fromData[2].value = viItems
     this.setData({ fromData: fromData })

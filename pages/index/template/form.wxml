@@ -7,7 +7,6 @@
   </view>
 </template>
 
-
 <template name="label">
   <view class='label' wx:if='{{!noLebal}}'>{{lebal}}
     <text class='sign'>({{isMust?'必填':'选填'}})</text>
