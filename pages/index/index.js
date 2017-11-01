@@ -4,6 +4,10 @@ const app = getApp()
 
 var fromParams = {}
 
+//  服务器根接口
+let serverUrl = 'http://tiramisu.localhost.com/diavision/weixin/'
+
+
 Page({
   data: {
     fromData: [
@@ -117,25 +121,13 @@ Page({
   viItemChange(e) {
     console.log(e)
   },
-  //事件处理函数
+  //  事件处理函数  
   onLoad: function () {
-    let serverUrl = 'http://tiramisu.localhost.com/diavision/index/'
+    let App = this;
     //  检查用户是否近期已经提交过..
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          //发起网络请求
-          wx.request({
-            url: serverUrl+'checkSession',
-            data: {
-              code: res.code
-            }
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
+    wxLogin(function (res) {
+      // console.log(res);
+    })
 
     var fromData = this.data.fromData
     fromData[2].value = viItems
@@ -228,4 +220,47 @@ function findArray(array, feature, all = true) {
     }
   }
   return -1;
+}
+
+//  微信登录
+function wxLogin(func) {
+  //调用登录接口
+  //1.小程序调用wx.login得到code.
+  wx.login({
+    success: function (res) {
+      var code = res['code'];
+      //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
+      wx.getUserInfo({
+        success: function (info) {
+          console.log(info);
+          var rawData = info['rawData'];
+          var signature = info['signature'];
+          var encryptData = info['encryptData'];
+          var encryptedData = info['encryptedData']; //注意是encryptedData不是encryptData...坑啊
+          var iv = info['iv'];
+
+          //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
+          wx.request({
+            url: serverUrl + 'check_login',
+            data: {
+              "code": code,
+              "rawData": rawData,
+              "signature": signature,
+              "encryptData": encryptData,
+              'iv': iv,
+              'encryptedData': encryptedData
+            },
+            success: function (res) {
+              if (res.statusCode != 200) {
+                wx.showModal({
+                  title: '登录失败'
+                });
+              }
+              typeof func == "function" && func(res.data);
+            }
+          });
+        }
+      });
+    }
+  });
 }
