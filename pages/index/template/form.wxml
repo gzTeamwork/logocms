@@ -17,24 +17,24 @@
 
   <!-- input -->
   <block wx:if='{{ model == "input"}}'>
-    <input id='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next'></input>
+    <input id='{{name}}' name='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next'></input>
   </block>
 
   <!-- select -->
   <block wx:if='{{ model == "select" }}'>
-    <picker id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}">
+    <picker name='{{name}}' id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}">
       <view class="picker">{{array[value]}}</view>
     </picker>
   </block>
 
   <!-- textarea -->
   <block wx:if='{{ model == "textarea" }}'>
-    <textarea id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" />
+    <textarea name='{{name}}' id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" />
   </block>
 
   <!-- single -->
   <block wx:if='{{ model == "single" }}'>
-    <radio-group style="width:auto;margin:-0.5rem;" id='{{name}}' value='{{value}}' bindchange='inputEvent'>
+    <radio-group name='{{name}}' style="width:auto;margin:-0.5rem;" id='{{name}}' value='{{value}}' bindchange='inputEvent'>
       <label wx:for='{{fromModule.logoStyle}}' wx:for-index="key" wx:key='*this' style='width:33%;display:inline-block'>
         <view style='padding:0.5rem'>
           <image mode='aspectFill' src='../../assets/imgs/{{key+1}}.jpg' style='width:200rpx;height:164rpx'></image>
@@ -46,7 +46,7 @@
 
   <!-- multi -->
   <block wx:if='{{ model == "multi" }}'>
-    <checkbox-group id='{{name}}' bindchange="viItemsChange">
+    <checkbox-group name='{{name}}' id='{{name}}' bindchange="viItemsChange">
       <label class="checkbox" wx:for="{{value}}" wx:key='*this' wx:for-item="item" style='width:33%;display:inline-block'>
         <view style='padding-top:1rem'>
           <checkbox value="{{item.name}}" checked="{{item.checked}}" data-price='{{item.price}}' disabled='{{item.disable}}' />{{item.name}}

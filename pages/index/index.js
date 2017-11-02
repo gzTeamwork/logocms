@@ -28,7 +28,6 @@ Page({
   },
   //  表单输入事件,同步数据到data
   inputEvent(e) {
-    //  计划废弃fromParams
     if (e.target.id.length > 1) {
       fromParams[e.target.id] = e.detail.value
       this.setData({ fromParams: fromParams })
@@ -82,35 +81,8 @@ Page({
     this.setData({ fromData: fromData })
   },
   //  提交Logo表单
-  bindFromSubmit() {
-    var fromData = this.data.fromData
-    var params = {}
-    params.userInfo = this.data.userInfo
-    for (let key in fromData) {
-      params[fromData[key].name] = fromData[key].value
-      console.log(params)
-    }
-    let serverUrl = 'http://www.diavision.cn/diavision/public/diavision/index/api'
-    serverUrl = 'http://tiramisu.localhost.com/diavision/index/'
-
-    wx.request({
-      url: serverUrl + 'design_submit',
-      method: 'POST',
-      data: params,
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        if (res.data.code == 1 && res.statusCode == 200) {
-          //  数据提交成功
-          wx.showToast({
-            title: res.data.msg, icon: 'success', duration: 2000,
-          })
-        }
-        console.log(res)
-      }
-    })
-
+  bindFromSubmit(e) {
+    fromsubmit(this,e);
   },
   //  直接联系拨打电话
   bindContactUs() {
@@ -224,43 +196,103 @@ function findArray(array, feature, all = true) {
 
 //  微信登录
 function wxLogin(func) {
-  //调用登录接口
-  //1.小程序调用wx.login得到code.
-  wx.login({
-    success: function (res) {
-      var code = res['code'];
-      //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
-      wx.getUserInfo({
-        success: function (info) {
-          console.log(info);
-          var rawData = info['rawData'];
-          var signature = info['signature'];
-          var encryptData = info['encryptData'];
-          var encryptedData = info['encryptedData']; //注意是encryptedData不是encryptData...坑啊
-          var iv = info['iv'];
-
-          //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
-          wx.request({
-            url: serverUrl + 'check_login',
-            data: {
-              "code": code,
-              "rawData": rawData,
-              "signature": signature,
-              "encryptData": encryptData,
-              'iv': iv,
-              'encryptedData': encryptedData
-            },
-            success: function (res) {
-              if (res.statusCode != 200) {
-                wx.showModal({
-                  title: '登录失败'
-                });
-              }
-              typeof func == "function" && func(res.data);
-            }
-          });
-        }
-      });
+  let session_3rd = false;
+  try {
+    session_3rd = wx.getStorageSync('session_3rd')
+    if (session_3rd) {
+      return session_3rd;
     }
-  });
+  } catch (e) {
+    console.log(e)
+    //调用登录接口
+    //1.小程序调用wx.login得到code.
+    wx.login({
+      success: function (res) {
+        var code = res['code'];
+        //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
+        wx.getUserInfo({
+          success: function (info) {
+            // console.log(info);
+            var rawData = info['rawData'];
+            var signature = info['signature'];
+            var encryptData = info['encryptData'];
+            var encryptedData = info['encryptedData']; //注意是encryptedData不是encryptData...坑啊
+            var iv = info['iv'];
+            wx.setStorage({ key: 'userInfo', data: info, })
+            //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
+            wx.request({
+              url: serverUrl + 'check_login',
+              data: {
+                "code": code,
+                "rawData": rawData,
+                "signature": signature,
+                "encryptData": encryptData,
+                'iv': iv,
+                'encryptedData': encryptedData
+              },
+              success: function (res) {
+                console.log(res);
+                if (res.statusCode != 200 || res.data.code != 1) {
+                  wx.showModal({ title: '登录失败' });
+                } else {
+                  //  登录成功 - 缓存各种数据,特别是3rd
+                  wx.setStorage({
+                    key: 'session_3rd', data: res.data.response.session_3rd,
+                  })
+                }
+                typeof func == "function" && func(res.data);
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+}
+
+//  表单提交检验
+function fromsubmit(app,e) {
+  console.log(e);
+  // 获取表单数据
+  var fromData = app.data.fromData
+  var params = {}
+  params.userInfo = app.data.userInfo
+  for (let key in fromData) {
+    if (fromData[key].value.length === 0 && fromData[key].isMust) {
+      wx.showModal({
+        title: '表单没填完',
+        content: '请填写' + fromData[key].lebal,
+        showCancel: false,
+        complete:function(){
+          // wx.pageScrollTo({
+          //   scrollTop: fromData[key].,
+          // })
+        }
+      })
+      return false;
+    }
+    params[fromData[key].name] = fromData[key].value
+    console.log(params)
+  }
+  // let serverUrl = 'http://www.diavision.cn/diavision/public/diavision/index/api'
+  // serverUrl = 'http://tiramisu.localhost.com/diavision/index/'
+
+  wx.request({
+    url: serverUrl + 'design_submit',
+    method: 'POST',
+    data: params,
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success: function (res) {
+      if (res.data.code == 1 && res.statusCode == 200) {
+        //  数据提交成功
+        wx.showToast({
+          title: res.data.msg, icon: 'success', duration: 2000,
+        })
+      }
+      console.log(res)
+    }
+  })
+
 }
