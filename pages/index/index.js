@@ -40,13 +40,13 @@ Page({
       }
     }
     this.setData({ fromData: fromData })
-    console.log(e)
+    // console.log(e)
   },
   //  套餐改变
   designSetChange(e) {
     this.inputEvent(e)
     var setVis = designSetArray[e.detail.value]
-    console.log(setVis);
+    // console.log(setVis);
     //  轮询套餐下的vi项,设置对应的tof
     for (let i = 0; i < viItems.length; i++) {
       let key = findArray(setVis.vis, viItems[i].id);
@@ -54,7 +54,7 @@ Page({
       viItems[i].checked = (key > -1);
       viItems[i].disable = (key > -1)
     }
-    console.log(viItems)
+    // console.log(viItems)
     var fromData = this.data.fromData
     fromData[2].value = viItems;
     fromData[5].value = designSetArray[e.detail.value].price
@@ -91,7 +91,7 @@ Page({
     })
   },
   viItemChange(e) {
-    console.log(e)
+    // console.log(e)
   },
   //  事件处理函数  
   onLoad: function () {
@@ -137,7 +137,7 @@ Page({
   onShow() {
   },
   getUserInfo: function (e) {
-    console.log(e)
+    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -203,7 +203,7 @@ function wxLogin(func) {
       return session_3rd;
     }
   } catch (e) {
-    console.log(e)
+    // console.log(e)
   }
   //调用登录接口
   //1.小程序调用wx.login得到code.
@@ -232,7 +232,7 @@ function wxLogin(func) {
               'encryptedData': encryptedData
             },
             success: function (res) {
-              console.log(res);
+              // console.log(res);
               if (res.statusCode != 200 || res.data.code != 1) {
                 wx.showModal({ title: '登录失败' });
               } else {
@@ -253,7 +253,19 @@ function wxLogin(func) {
 
 //  表单提交检验
 function fromsubmit(app, e) {
-  console.log(e);
+  //  检查表单提交时效
+  let lastSubTime = wx.getStorageSync('recentSubmitExpire');  //  上次提交缓存的时间
+  let now = parseInt(new Date().getTime() / 1000);
+  let isExpired = now - lastSubTime
+  // console.log(isExpired)
+  if (isExpired < 7200) {
+    wx.showModal({
+      title: '注意',
+      content: '距离上次提交需求才不久,是否太急了?',
+      showCancel: false,
+    })
+    return false
+  }
   // 获取表单数据
   var fromData = app.data.fromData
   var params = {}
@@ -273,21 +285,10 @@ function fromsubmit(app, e) {
       return false;
     }
     params[fromData[key].name] = fromData[key].value
-    console.log(params)
   }
-
-  let lastSubTimp = 0;
-  try {
-    lastSubTimp = parseInt(wx.getStorageSync('recentSubmitExpire'))
-  } catch (e) { }
-  if ((new Date().getTime() - (lastSubTimp * 1000)) < 7200) {
-    wx.showModal({
-      title: '注意',
-      content: '距离上次提交需求才不久,是否太急了?',
-      showCancel: false,
-    })
-    return false
-  }
+  wx.showLoading({
+    title: '加载中',
+  })
   wx.request({
     url: serverUrl + 'design_submit',
     method: 'POST',
@@ -309,5 +310,7 @@ function fromsubmit(app, e) {
       console.log(res)
     }
   })
-
+  setTimeout(function () {
+    wx.hideLoading()
+  }, 2000)
 }
