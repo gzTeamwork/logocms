@@ -1,30 +1,62 @@
 //index.js
 //获取应用实例
 const app = getApp()
+let Units = require('./../../utils/util.js')
+let Config = require('config.js')
 
+//  服务器接口
+let serverUrl = Config.serverUrl();
+//  获取设计套餐数据
+var designSetArray = Config.designSets();
+//  vi项
+let viItems = Config.viItems()
+//  表单提交数组
 var fromParams = {}
-
-//  服务器根接口
-let serverUrl = 'http://tiramisu.localhost.com/diavision/weixin/'
-serverUrl = 'http://www.diavision.cn/diavision/public/diavision/weixin/'
 
 Page({
   data: {
     fromData: [
-      { name: 'logo_name', value: '', lebal: 'Logo/商标名称', preText: '填写您的项目名称', isMust: true, model: 'input' },
-      { name: 'design_set', lebal: '设计套餐', preText: '请选择您的套餐', isMust: true, model: 'select', value: 0, array: ['Logo设计套餐A', 'Logo设计套餐B', 'VIS设计套餐'] },
-      { name: 'vi_item', value: [], lebal: 'VI设计项', preText: '请选择您需要的VI设计项目', isMust: true, model: 'multi' },
-      { name: 'logo_style', value: 1, lebal: '喜欢的Logo风格', preText: '请选择您喜爱的Logo设计风格', isMust: true, model: 'single' },
-      { name: 'design_suggest', value: '', lebal: '设计要求', preText: '请详细描述您的设计要求，有助高效完成logo设计', isMust: false, model: 'textarea', },
+      {
+        name: 'logo_name', value: '', lebal: 'Logo/商标名称',
+        preText: '填写您的项目名称', isMust: true, model: 'input'
+      },
+      // { name: 'design_set', lebal: '设计套餐', preText: '请选择您的套餐', isMust: true, model: 'select', value: 0, array: ['Logo设计套餐A', 'Logo设计套餐B', 'VIS设计套餐'] },
+      {
+        name: 'design_set', lebal: '设计套餐',
+        preText: '请选择您的套餐', isMust: true, model: 'select', value: 0, array: Config.designSets()
+      },
+      {
+        name: 'vi_item', value: [], lebal: 'VI设计项',
+        preText: '请选择您需要的VI设计项目', isMust: true, model: 'multi'
+      },
+      {
+        name: 'logo_style', value: 1, lebal: '喜欢的Logo风格',
+        preText: '请选择您喜爱的Logo设计风格', isMust: true, model: 'single',
+        array: Config.logoStyle()
+      },
+      {
+        name: 'design_suggest', value: '', lebal: '设计要求',
+        preText: '请详细描述您的设计要求，有助高效完成logo设计', isMust: false, model: 'textarea',
+      },
       { name: 'total_price', value: 0, noLebal: true, model: 'total_price' },
-      { name: 'user_name', value: '', lebal: '您的姓名', preText: '请填写您的名字', isMust: true, model: 'input' },
-      { name: 'user_phone', value: '', lebal: '您的电话', preText: '请填写您的联系方式(手机)', isMust: true, model: 'input' },
-      { name: 'user_company', value: '', lebal: '公司名字', preText: '请填写您的公司名', isMust: true, model: 'input' },
+      {
+        name: 'user_name', value: '', lebal: '您的姓名',
+        preText: '请填写您的名字', isMust: true, model: 'input'
+      },
+      {
+        name: 'user_phone', value: '', lebal: '您的电话',
+        preText: '请填写您的联系方式(手机)', isMust: true, model: 'input', datatype: 'number', maxlength: 11
+      },
+      {
+        name: 'user_company', value: '', lebal: '公司名字',
+        preText: '请填写您的公司名', isMust: true, model: 'input'
+      },
     ],
     fromParams: {},
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    currentUrl: '',
   },
   //  表单输入事件,同步数据到data
   inputEvent(e) {
@@ -42,6 +74,9 @@ Page({
     this.setData({ fromData: fromData })
     // console.log(e)
   },
+  // input聚焦
+  inputFocus(e) {
+  },
   //  套餐改变
   designSetChange(e) {
     this.inputEvent(e)
@@ -50,7 +85,6 @@ Page({
     //  轮询套餐下的vi项,设置对应的tof
     for (let i = 0; i < viItems.length; i++) {
       let key = findArray(setVis.vis, viItems[i].id);
-      // key > -1 ? console.log(viItems[i]) : ''
       viItems[i].checked = (key > -1);
       viItems[i].disable = (key > -1)
     }
@@ -100,6 +134,9 @@ Page({
     wxLogin(function (res) {
       // console.log(res);
     })
+    this.setData({
+      currentUrl: Units.getCurrentPageUrl()
+    })
 
     var fromData = this.data.fromData
     fromData[2].value = viItems
@@ -145,31 +182,7 @@ Page({
     })
   }
 })
-var designSetArray = [
-  { name: 'Logo设计套餐A', vis: [2, 3, 4], price: 2380 },
-  { name: 'Logo设计套餐B', vis: [2, 3, 4, 5, 6, 7], price: 2680 },
-  { name: 'VIS设计套餐', vis: [2, 3, 4, 5, 6, 7, 8, 17], price: 3680 }
-];
-var viItems = [
-  { id: '2', name: '标志墨稿', price: 200, checked: true, disable: true },
-  { id: '3', name: '标志反白图', price: 200, checked: true, disable: true },
-  { id: '4', name: '标志标准制图', price: 200, checked: true, disable: true },
-  { id: '5', name: '标志方格制图', price: 200, checked: false, disable: false },
-  { id: '6', name: '标志比例限定', price: 200, checked: false, disable: false },
-  { id: '7', name: '标志色彩展示', price: 200, checked: false, disable: false },
-  { id: '16', name: '企业标准色', price: 200, checked: false, disable: false },
-  { id: '17', name: '辅助色系列', price: 200, checked: false, disable: false },
-  { id: '18', name: '辅助图形', price: 300, checked: false, disable: false },
-  { id: '19', name: '名片', price: 300, checked: false, disable: false },
-  { id: '24', name: '信封', price: 200, checked: true, disable: true },
-  { id: '8', name: '信纸', price: 200, checked: false, disable: false },
-  { id: '20', name: 'PPT模板', price: 300, checked: false, disable: false },
-  { id: '21', name: '工号牌', price: 300, checked: false, disable: false },
-  { id: '22', name: '工作证', price: 300, checked: false, disable: false },
-  { id: '77', name: '标识伞', price: 300, checked: false, disable: false },
-  { id: '23', name: '标识牌', price: 300, checked: false, disable: false },
-  { id: '16', name: '合同书范本', price: 200, checked: false, disable: false }
-]
+
 
 function findArray(array, feature, all = true) {
   for (let index in array) {
@@ -297,6 +310,7 @@ function fromsubmit(app, e) {
       'content-type': 'application/json' // 默认值
     },
     success: function (res) {
+      wx.hideLoading()
       if (res.data.code == 1 && res.statusCode == 200) {
         //  数据提交成功
         wx.showToast({
@@ -308,9 +322,10 @@ function fromsubmit(app, e) {
         })
       }
       console.log(res)
+    },
+    complete: function () {
+      wx.hideLoading()
     }
   })
-  setTimeout(function () {
-    wx.hideLoading()
-  }, 2000)
+
 }

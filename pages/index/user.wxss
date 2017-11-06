@@ -1,0 +1,12 @@
+.userPlan {
+  text-align: center;
+  background: #d00600;
+  color: white;
+  padding: 0.5em;
+}
+
+.listLabel {
+  padding: 0.5em;
+  background: #f2f2f2;
+  color: #4d4d4d;
+}

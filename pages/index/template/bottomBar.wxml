@@ -1,0 +1,25 @@
+<template name="bottomBar">
+  <view class='bottom-bar' style='flex-direction:row;'>
+    <navigator class="{{item.url==url?'active-menu':''}}" wx:for="{{this.bars}}" wx:for-item="item" url="/{{item.url}}" open-type='redirect' style='width:50%;display:inline-block;text-align:center'>
+      <image src='{{item.url==url?item.active:item.icon}}' style='width:64rpx;height:64rpx'></image>
+      <view>{{item.label}}</view>
+    </navigator>
+  </view>
+</template>
+<wxs module="this">
+  module.exports = {
+    bars: [{
+        url: 'pages/index/index',
+        icon: '../../assets/imgs/ticket.png',
+        active: '../../assets/imgs/ticket_active.png',
+        label: '提交需求'
+      },
+      {
+        url: 'pages/index/user',
+        icon: '../../assets/imgs/user.png',
+        active: '../../assets/imgs/user_active.png',
+        label: '我'
+      }
+    ]
+  }
+</wxs>

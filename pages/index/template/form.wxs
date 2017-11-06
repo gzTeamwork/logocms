@@ -1,8 +1,0 @@
-var getInputValue = function (app,obj) {
-  app
-  return console.log(app,obj)
-}
-
-module.exports = {
-  val: getInputValue
-}

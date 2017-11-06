@@ -10,52 +10,20 @@
   box-sizing: border-box;
 }
 
-.wxapp-float-right {
-  float: right;
+view {
+  font-size: 28rpx;
 }
 
-.wxapp-pageTitle {
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  text-align: center;
-  font-weight: 900;
-  font-size: 120%;
+  padding: 0.5em;
+  background: white;
+  border-top: 1px solid #d00600;
+  z-index: 999;
 }
 
-.wxapp-form-item {
-  padding: 2%;
-  margin: 2%;
-  width: 92%;
-}
-.wxapp-thumb{
-  width: 100%;
-  height:300rpx;
-
-}
-
-.wxapp-form-item>label {
-  font-size: 42rpx;
-  line-height: 2em;
-  padding-bottom: 0.3em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid #00c777;
-}
-
-.wxapp-form-item>input, .wxapp-form-item>.wxapp-input-item {
-  line-height: 2em;
-  font-size: 36rpx;
-  margin-top: 1em;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid #ccc;
-}
-
-.wxapp-form-item>textarea {
-  width: 96%;
-  margin-top: 1em;
-  border: 1px solid #ccc;
-  border-top: none;
-  padding:2%;
-}
-
-.wxapp-form-item>input:focus {
-  border-bottom: 1px solid #00c777 !important;
+.active-menu {
+  color: #d00600;
 }

@@ -9,7 +9,7 @@
 
 <template name="label">
   <view class='label' wx:if='{{!noLebal}}'>{{lebal}}
-    <text class='sign'>({{isMust?'必填':'选填'}})</text>
+    <text class='{{isMust?"must":"sign"}}'>({{isMust?'必填':'选填'}})</text>
   </view>
 </template>
 
@@ -17,14 +17,19 @@
 
   <!-- input -->
   <block wx:if='{{ model == "input"}}'>
-    <input id='{{name}}' name='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next'></input>
+    <input id='{{name}}' name='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next' type='{{datatype||"text"}}' maxlength='{{maxlength||40}}'></input>
   </block>
 
   <!-- select -->
   <block wx:if='{{ model == "select" }}'>
-    <picker name='{{name}}' id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}">
-      <view class="picker">{{array[value]}}</view>
+    <picker name='{{name}}' id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}" range-key="name">
+      <view class="picker">
+        {{array[value].name}}
+      </view>
     </picker>
+    <view class='picker-summary'>
+      <text>{{array[value].summary}}</text>
+    </view>
   </block>
 
   <!-- textarea -->
@@ -35,7 +40,7 @@
   <!-- single -->
   <block wx:if='{{ model == "single" }}'>
     <radio-group name='{{name}}' style="width:auto;margin:-0.5rem;" id='{{name}}' value='{{value}}' bindchange='inputEvent'>
-      <label wx:for='{{fromModule.logoStyle}}' wx:for-index="key" wx:key='*this' style='width:33%;display:inline-block'>
+      <label wx:for='{{array}}' wx:for-index="key" wx:key='value' style='width:50%;display:inline-block;text-align:center'>
         <view style='padding:0.5rem'>
           <image mode='aspectFill' src='../../assets/imgs/{{key+1}}.jpg' style='width:200rpx;height:164rpx'></image>
           <radio checked='{{key == value}}' value='{{key}}'>{{item.name}}</radio>
@@ -47,9 +52,9 @@
   <!-- multi -->
   <block wx:if='{{ model == "multi" }}'>
     <checkbox-group name='{{name}}' id='{{name}}' bindchange="viItemsChange">
-      <label class="checkbox" wx:for="{{value}}" wx:key='*this' wx:for-item="item" style='width:33%;display:inline-block'>
+      <label class="checkbox" wx:for="{{value}}" wx:key='{{item.name}}' wx:for-item="item" style='width:50%;display:inline-block'>
         <view style='padding-top:1rem'>
-          <checkbox value="{{item.name}}" checked="{{item.checked}}" data-price='{{item.price}}' disabled='{{item.disable}}' />{{item.name}}
+          <checkbox value="{{item.name}}" checked="{{item.checked || false}}" data-price='{{item.price}}' disabled='{{item.disable || false}}' />{{item.name}}
         </view>
       </label>
     </checkbox-group>
@@ -86,123 +91,5 @@
 </template>
 
 <wxs module="fromModule">
-  var logoStyle = [{
-    name: '图标标准字'
-  }, {
-    name: '图标设计字'
-  }, {
-    name: '单字体设计'
-  }, {
-    name: '单图标设计'
-  }, {
-    name: '图文融合'
-  }, {
-    name: '图标含文字'
-  }]
-  var viItems = [{
-    name: '黑白稿',
-    price: 100
-  }, {
-    name: '印花稿',
-    price: 200
-  }, {
-    name: '标准制图',
-    price: 300
-  }]
-
-  var viItems = [{
-      id: '2',
-      name: '标志墨稿',
-      price: '200'
-    },
-    {
-      id: '3',
-      name: '标志反白图',
-      price: '200'
-    },
-    {
-      id: '4',
-      name: '标志标准制图',
-      price: '200'
-    },
-    {
-      id: '5',
-      name: '标志方格制图',
-      price: '200'
-    },
-    {
-      id: '6',
-      name: '标志比例限定',
-      price: '200'
-    },
-    {
-      id: '7',
-      name: '标志色彩展示',
-      price: '200'
-    },
-    {
-      id: '16',
-      name: '企业标准色',
-      price: '200'
-    },
-    {
-      id: '17',
-      name: '辅助色系列',
-      price: '200'
-    },
-    {
-      id: '#',
-      name: '辅助图形',
-      price: '300'
-    },
-    {
-      id: '#',
-      name: '名片',
-      price: '300'
-    },
-    {
-      id: '4',
-      name: '信封',
-      price: '200'
-    },
-    {
-      id: '8',
-      name: '信纸',
-      price: '200'
-    },
-    {
-      id: '#',
-      name: 'PPT模板',
-      price: '300'
-    },
-    {
-      id: '#',
-      name: '工号牌',
-      price: '300'
-    },
-    {
-      id: '#',
-      name: '工作证',
-      price: '300'
-    },
-    {
-      id: '77',
-      name: '标识伞',
-      price: '300'
-    },
-    {
-      id: '#',
-      name: '标识牌',
-      price: '300'
-    },
-    {
-      id: '16',
-      name: '合同书范本',
-      price: 200
-    }
-  ]
-  module.exports = {
-    logoStyle: logoStyle,
-    viItems: viItems
-  }
+  module.exports = {}
 </wxs>

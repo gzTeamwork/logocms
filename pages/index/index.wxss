@@ -1,8 +1,6 @@
 /**index.wxss**/
 
-view {
-  font-size: 28rpx;
-}
+
 
 .dia-item {
   margin-top: 0.5rem;
@@ -19,9 +17,13 @@ view {
   font-weight: 500;
 }
 
-.dia-item .label .sign {
+.dia-item .label .sign, .dia-item .label .must {
   font-weight: 100;
   font-size: 85%;
+}
+
+.dia-item .label .must {
+  color: #d00600;
 }
 
 .dia-item .item, button {
@@ -43,9 +45,12 @@ view {
   line-height: 2rem;
 }
 
-.dia-item .item input:active,.dia-item .item input:focus {
-  transform: border-color;
-  border-color: #d00600;
+.dia-item .item .picker-summary {
+  padding: 1em;
+  line-height: 2em;
+  background: #eee;
+  color: #333;
+  padding-top: 0;
 }
 
 .dia-item .total_price {
@@ -65,3 +70,9 @@ view {
 .dia-item .total_price .price {
   font-size: 200%;
 }
+
+checkbox {
+  transform: all 0.5s;
+}
+
+

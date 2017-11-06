@@ -16,4 +16,6 @@
       <button type='primary' bindtap='bindContactUs'>直接联系我们</button>
     </view>
   </form>
+   <import src="./template/bottomBar.wxml" /> 
+   <template is="bottomBar" data="{{url:currentUrl}}" /> 
 </view>
