@@ -1,7 +1,7 @@
 //获取应用实例
 const app = getApp()
 
-let Config = require('config.js')
+let Config = require('./config.js')
 let Units = require('./../../utils/util.js')
 
 //  服务器接口
@@ -18,19 +18,23 @@ let fromParams = {}
 Page({
   data: {
     userInfo: {},
-    currentUrl: '',
     screenWidth: 0,
+    sliderId:0,
   },
   onLoad: function () {
-
   },
   onReady: function () {
     let Apps = this
     console.log('showing...')
+
     //  获取屏幕宽度
+    let res = wx.getSystemInfoSync()
+    console.log(res)
+    let user = Units.getUser()
+    console.log(user)
     Apps.setData({
-      userInfo:Units.getUser(),
-      currentUrl: Units.getCurrentPageUrl(),
+      userInfo: user,
+      screenWidth: res.windowWidth,
     })
   },
   itemTouch(e) {

@@ -8,22 +8,36 @@ Component({
       type: String,
       value: 'default value',
     },
-    width: {
+    w: {
       type: Number,
-      value: '100%'
+      value: '100%',
+      observer: function (nv, ov) {
+        this.setData({ W: nv })
+      }
+    },
+    compId: {
+      type: String, 
+      observer: function (nv, ov) {
+        this.setData({ compId: nv })
+      }
     }
   },
   data: {
     // 这里是一些组件内部数据
+    compId: '',
     W: 0,
-    H: 0,
-    planClass: 'sliderHoverPlan',
-
+    H: 96,
+    boxClass: '',
   },
   methods: {
     // 这里是一个自定义方法
     sliderHover: function (e) {
-      this.setData({ planClass: 'sliderHoverPlanShow' })
+      console.log(this.data.compId + '被滑动了')
+      this.setData({ boxClass: 'box-show' })
+    },
+    sliderOver: function (e) {
+      console.log(this.compId + '被滑出了')
+      this.setData({ boxClass: 'box-hide' })
     }
   }
   , ready: function (e) {

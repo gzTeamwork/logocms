@@ -1,8 +1,8 @@
-<view class="sliderHover" style="width:{{W*1.3}}px" bindtouchstart='sliderHover'>
-  <view class='sliderHoverContent'>
+<view id='{{id}}' class="box {{boxClass}}" style="width:{{W+H}}px;height:{{H}}px" bindtouchstart='sliderHover'>
+  <view class='content' style='width:{{W}}px'>
     <slot></slot>
   </view>
-  <view class="{{planClass}}">
+  <view class="plan" style='width:{{H}}px;;height:{{H}}px'>
     {{innerText}}
   </view>
 </view>

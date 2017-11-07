@@ -10,6 +10,7 @@ App({
     let logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+
     //  3rd过期检查
     let session_3rd = wx.getStorageSync('session_3rd') || false
     console.log('3rd过期检查' + session_3rd)
@@ -27,44 +28,37 @@ App({
             let encryptedData = info['encryptedData']; //注意是encryptedData不是encryptData...坑啊
             let iv = info['iv'];
             let user = JSON.parse(info.rawData)
-            user.expire = new Date().getTime() / 1000
+            // console.log(user);
+
+            wx.setStorageSync('userInfo', user)
+            this.globalData.userInfo = user
             // 可以将 res 发送给后台解码出 unionId
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
-            if (this.userInfoReadyCallback) {
-              //  4.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
-              wx.request({
-                url: serverUrl + 'check_login',
-                data: {
-                  "code": code,
-                  "rawData": rawData,
-                  "signature": signature,
-                  "encryptData": encryptData,
-                  'iv': iv,
-                  'encryptedData': encryptedData
-                },
-                success: function (res) {
-                  // console.log(res);
-                  if (res.statusCode != 200 || res.data.code != 1) {
-                    wx.showModal({ title: '登录失败' });
-                  } else {
-                    //  登录成功 - 缓存各种数据,特别是3rd
-                    wx.setStorage({
-                      key: 'session_3rd', data: res.data.content.session_3rd,
-                    })
-                  }
-                  typeof func == "function" && func(res.data);
+            //  4.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
+            wx.request({
+              url: serverUrl + 'check_login',
+              data: {
+                "code": code,
+                "rawData": rawData,
+                "signature": signature,
+                "encryptData": encryptData,
+                'iv': iv,
+                'encryptedData': encryptedData
+              },
+              success: function (res) {
+                // console.log(res);
+                if (res.statusCode != 200 || res.data.code != 1) {
+                  wx.showModal({ title: '登录失败' });
+                } else {
+                  //  登录成功 - 缓存各种数据,特别是3rd
+                  wx.setStorage({
+                    key: 'session_3rd', data: res.data.content.session_3rd,
+                  })
                 }
-              });
-              this.userInfoReadyCallback = res => {
-                console.log(res)
-                wx.setStorage({ key: 'userInfo', data: JSON.parse(res.rawData) })
-                //  等待后执行
-                getApp().globalData.userInfo = res.userInfo
-                console.log(getApp().globalData)
+                typeof func == "function" && func(res.data);
               }
-            }
-
+            });
           }
         });
 

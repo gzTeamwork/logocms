@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let Units = require('./../../utils/util.js')
-let Config = require('config.js')
+let Config = require('./config.js')
 
 //  服务器接口
 let serverUrl = Config.serverUrl();

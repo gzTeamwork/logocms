@@ -13,15 +13,17 @@
     <view class='listLabel'>
       待处理 2 项(向左滑动可删除)
     </view>
-    <view>
-      <comp-sliderHover innerText="删除" width="{{screenWidth}} ">
-        <view style='width:60%;display:inline-block;'>
-          <view style='font-weight:900'>提交Logo设计的名字</view>
-          <view style=''>2017-11-11 12:12</view>
-        </view>
-        <view style='width:40%;display:inline-block;color:#d00600'>
-          <view style='font-weight:900'>Logo套餐A</view>
-          <view>¥2680.00</view>
+    <view wx:for="{{[1,2,3,4,5]}}" wx:for-item="item">
+      <comp-sliderHover compId='{{item}}' innerText="删除" w="{{screenWidth}}">
+        <view class='flex flex-center'>
+          <view style='width:60%;padding-left:1em'>
+            <view style='font-weight:900'>提交Logo设计的名字</view>
+            <view style=''>2017-11-11 12:12</view>
+          </view>
+          <view style='width:40%;color:#d00600'>
+            <view style='font-weight:900'>Logo套餐A</view>
+            <view>¥2680.00</view>
+          </view>
         </view>
       </comp-sliderHover>
     </view>
