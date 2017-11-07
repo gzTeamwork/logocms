@@ -7,38 +7,31 @@ let Units = require('./../../utils/util.js')
 //  服务器接口
 let serverUrl = Config.serverUrl();
 //  获取设计套餐数据
-var designSetArray = Config.designSets();
+let designSetArray = Config.designSets();
 //  vi项
 let viItems = Config.viItems()
 //  表单提交数组
-var fromParams = {}
+let fromParams = {}
+
+// //  引入组件
 
 Page({
   data: {
     userInfo: {},
     currentUrl: '',
+    screenWidth: 0,
   },
   onLoad: function () {
-    console.log('loading..')
-    let app = this;
-    let userInfo = {};
-    wx.getUserInfo({
-      success: function (res) {
-        console.log(res)
-        userInfo = JSON.parse(res.rawData);
-        app.setData({
-          userInfo: userInfo,
-        })
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-    this.setData({
+
+  },
+  onReady: function () {
+    let Apps = this
+    console.log('showing...')
+    //  获取屏幕宽度
+    Apps.setData({
+      userInfo:Units.getUser(),
       currentUrl: Units.getCurrentPageUrl(),
     })
-  }, onShow: function () {
-    console.log('showing...')
-
   },
   itemTouch(e) {
     console.log(e)

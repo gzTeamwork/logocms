@@ -1,0 +1,40 @@
+.sliderHover {
+  width: 100%;
+  background: transparent;
+}
+
+.sliderHoverContent {
+  height: 96px;
+}
+
+.sliderHoverPlan {
+  position: absolute;
+  left: 90%;
+  height: 96px;
+  background: #d00600;
+  color: white;
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderHoverPlanShow {
+  position: absolute;
+  height: 96px;
+  background: #d00600;
+  color: white;
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+  transform: translateX(30%);
+}
+
+.sliderHoverPlan::before {
+  height: 1em;
+  width: 1em;
+  background: #d00600;
+  display: block;
+}

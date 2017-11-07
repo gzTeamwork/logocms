@@ -1,0 +1,5 @@
+<view class="sliderHover">
+  <view class="sliderHoverPlan">
+    <slot name="content"></slot>
+  </view>
+</view>

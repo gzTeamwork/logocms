@@ -129,11 +129,12 @@ Page({
   },
   //  事件处理函数  
   onLoad: function () {
-    let App = this;
+    let Apps = this;
     //  检查用户是否近期已经提交过..
-    wxLogin(function (res) {
-      // console.log(res);
-    })
+    //  已取消index检查,改为app.js
+    // wxLogin(function (res) {
+    //   // console.log(res);
+    // })
     this.setData({
       currentUrl: Units.getCurrentPageUrl()
     })
@@ -162,8 +163,8 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
+          Apps.globalData.userInfo = res.userInfo
+          Apps.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
@@ -263,9 +264,8 @@ function wxLogin(func) {
   });
 }
 
-
 //  表单提交检验
-function fromsubmit(app, e) {
+function fromsubmit(page, e) {
   //  检查表单提交时效
   let lastSubTime = wx.getStorageSync('recentSubmitExpire');  //  上次提交缓存的时间
   let now = parseInt(new Date().getTime() / 1000);
@@ -280,9 +280,9 @@ function fromsubmit(app, e) {
     return false
   }
   // 获取表单数据
-  var fromData = app.data.fromData
+  var fromData = page.data.fromData
   var params = {}
-  params.userInfo = app.data.userInfo
+  params.userInfo = page.data.userInfo
   for (let key in fromData) {
     if (fromData[key].value.length === 0 && fromData[key].isMust) {
       wx.showModal({

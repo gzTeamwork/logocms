@@ -2,7 +2,7 @@
   <view class='userPlan' style='flex-direction:row;'>
     <view style='width:50%;display:inline-block'>
       <image src='{{userInfo.avatarUrl}}' style='width:128rpx;height:128rpx'></image>
-      <view>{{userInfo.nickName}}</view>
+      <!-- <view>{{ userInfo.nickName }} </view> -->
     </view>
     <view style='width:50%;display:inline-block;'>
       <view>需求提交</view>
@@ -13,6 +13,19 @@
     <view class='listLabel'>
       待处理 2 项(向左滑动可删除)
     </view>
+    <view>
+      <comp-sliderHover innerText="删除" width="{{screenWidth}} ">
+        <view style='width:60%;display:inline-block;'>
+          <view style='font-weight:900'>提交Logo设计的名字</view>
+          <view style=''>2017-11-11 12:12</view>
+        </view>
+        <view style='width:40%;display:inline-block;color:#d00600'>
+          <view style='font-weight:900'>Logo套餐A</view>
+          <view>¥2680.00</view>
+        </view>
+      </comp-sliderHover>
+    </view>
+
     <view class='pending-item' style='flex-direction:row;line-height:2em;padding:1em;border-bottom:1px solid #ccc' catch:touchstart="itemTouch">
       <view style='width:60%;display:inline-block;'>
         <view style='font-weight:900'>提交Logo设计的名字</view>
@@ -22,8 +35,11 @@
         <view style='font-weight:900'>Logo套餐A</view>
         <view>¥2680.00</view>
       </view>
+      <view class='sliderHover'>
+        <view class='sliderHoverPlan'>123</view>
+      </view>
     </view>
   </view>
   <import src="./template/bottomBar.wxml" />
-  <template is="bottomBar" data="{{url:currentUrl}}" />
+  <template is="bottomBar" data="{{url:currentUrl}} " />
 </view>

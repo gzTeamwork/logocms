@@ -40,9 +40,26 @@ function getCurrentPageUrlWithArgs() {
   return urlWithArgs
 }
 
+function getUser() {
+  let app = getApp()
+  let user = {}
+  if (app.userInfoReadyCallback && app.globalData.userInfo) {
+    return app.globalData.userInfo
+  } else {
+    // 在没有 open-type=getUserInfo 版本的兼容处理  
+    wx.getUserInfo({
+      success: res => {
+        user = app.globalData.userInfo = res.userInfo
+      }
+    })
+  }
+  return user
+}
+
 
 module.exports = {
   formatTime: formatTime,
   getCurrentPageUrl: getCurrentPageUrl,
-  getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs
+  getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs,
+  getUser: getUser
 }
