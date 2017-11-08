@@ -1,45 +1,49 @@
 <view class="container">
-  <view class='userPlan' style='flex-direction:row;'>
-    <view style='width:50%;display:inline-block'>
-      <image src='{{userInfo.avatarUrl}}' style='width:128rpx;height:128rpx'></image>
-      <!-- <view>{{ userInfo.nickName }} </view> -->
+  <view class='userPlan flex flex-center'>
+    <view class='flex-child flex-center' style='width:50%'>
+      <view>
+        <image class='wx-avatar' src='{{userInfo.avatarUrl}}' style='width:128rpx;height:128rpx'></image>
+      </view>
+      <view style='padding:1em;'>{{ userInfo.nickName }} </view>
     </view>
-    <view style='width:50%;display:inline-block;'>
-      <view>需求提交</view>
-      <view>1</view>
+    <view class='flex-child flex-center' style='width:50%;'>
+      <view>需求提交 {{parseInt(unfinishedList.length) + parseInt(finishedList.lenght)}} 次</view>
     </view>
   </view>
   <view>
     <view class='listLabel'>
-      待处理 2 项(向左滑动可删除)
+      待处理 {{ unfinishedList.length }} 项(向左滑动可删除)
     </view>
-    <view wx:for="{{[1,2,3,4,5]}}" wx:for-item="item">
-      <comp-sliderHover compId='{{item}}' innerText="删除" w="{{screenWidth}}">
+    <view wx:for="{{unfinishedList}}" wx:for-item="item" bindtap='sliderChange' id="{{item.id}}">
+      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
         <view class='flex flex-center'>
           <view style='width:60%;padding-left:1em'>
-            <view style='font-weight:900'>提交Logo设计的名字</view>
-            <view style=''>2017-11-11 12:12</view>
+            <view style='font-weight:900'>{{item.formData.logo_name}}</view>
+            <view>{{ item.postTime }}</view>
           </view>
           <view style='width:40%;color:#d00600'>
-            <view style='font-weight:900'>Logo套餐A</view>
-            <view>¥2680.00</view>
+            <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
+            <view>{{ item.formData.total_price }}</view>
           </view>
         </view>
       </comp-sliderHover>
     </view>
-
-    <view class='pending-item' style='flex-direction:row;line-height:2em;padding:1em;border-bottom:1px solid #ccc' catch:touchstart="itemTouch">
-      <view style='width:60%;display:inline-block;'>
-        <view style='font-weight:900'>提交Logo设计的名字</view>
-        <view style=''>2017-11-11 12:12</view>
-      </view>
-      <view style='width:40%;display:inline-block;color:#d00600'>
-        <view style='font-weight:900'>Logo套餐A</view>
-        <view>¥2680.00</view>
-      </view>
-      <view class='sliderHover'>
-        <view class='sliderHoverPlan'>123</view>
-      </view>
+    <view class='listLabel'>
+      已处理 {{ finishedList.length || 0}} 项
+    </view>
+    <view wx:for="{{finishedList}}" wx:for-item="item" bindtap='sliderChange' id="{{item.id}}">
+      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
+        <view class='flex flex-center'>
+          <view style='width:60%;padding-left:1em'>
+            <view style='font-weight:900'>{{item.formData.logo_name}}</view>
+            <view>{{ item.postTime }}</view>
+          </view>
+          <view style='width:40%;color:#d00600'>
+            <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
+            <view>{{ item.formData.total_price }}</view>
+          </view>
+        </view>
+      </comp-sliderHover>
     </view>
   </view>
   <import src="./template/bottomBar.wxml" />

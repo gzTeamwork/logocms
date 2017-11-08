@@ -3,11 +3,17 @@
   background: transparent;
   display: flex;
   justify-content: center;
+  transform: translateX(0);
+  border-bottom:1px solid #ffeffe;
 }
 
 .box-show {
   transition: all 0.5s;
   transform: translateX(-96px);
+}
+.box-hide{
+  transition: all 0.5s;
+  transform: translateX(0);
 }
 
 .content {
@@ -19,6 +25,7 @@
 }
 
 .plan {
+  transition: all 0.5s;
   background: transparent;
   color: white;
   display: flex;
