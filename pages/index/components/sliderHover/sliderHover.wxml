@@ -2,7 +2,7 @@
   <view class='content' style='width:{{W}}px' bindtouchstart='sliderHover' bindtouchmove='sliderOver'>
     <slot></slot>
   </view>
-  <view class="plan" style='width:{{H}}px;;height:{{H}}px' catchtap='compPlanTap'>
+  <view class="plan" style='width:{{H}}px;;height:{{H}}px' catchtap='compPlanTap' data-tid='{{id}}'>
     {{innerText}}
   </view>
 </view>

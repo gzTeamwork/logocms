@@ -1,6 +1,6 @@
 <template name="bottomBar">
   <view class='bottom-bar' style='flex-direction:row;'>
-    <navigator class="{{item.url==url?'active-menu':''}}" wx:for="{{this.bars}}" wx:for-item="item" url="/{{item.url}}" open-type='redirect' style='width:50%;display:inline-block;text-align:center'>
+    <navigator class="{{item.url==url?'active-menu':''}}" wx:for="{{this.bars}}" wx:for-item="item" wx:key="item.url" url="/{{item.url}}" open-type='redirect' style='width:50%;display:inline-block;text-align:center'>
       <image src='{{item.url==url?item.active:item.icon}}' style='width:64rpx;height:64rpx'></image>
       <view data-cur='{{url}}'>{{item.label}}</view>
     </navigator>

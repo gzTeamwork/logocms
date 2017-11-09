@@ -14,7 +14,7 @@
     <view class='listLabel'>
       待处理 {{ unfinishedList.length }} 项(向左滑动可删除)
     </view>
-    <view wx:for="{{unfinishedList}}" wx:for-item="item" bindtap='sliderChange' id="{{item.id}}">
+    <view wx:for="{{unfinishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
       <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
         <view class='flex flex-center'>
           <view style='width:60%;padding-left:1em'>
@@ -31,7 +31,7 @@
     <view class='listLabel'>
       已处理 {{ finishedList.length || 0}} 项
     </view>
-    <view wx:for="{{finishedList}}" wx:for-item="item" bindtap='sliderChange' id="{{item.id}}">
+    <view wx:for="{{finishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
       <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
         <view class='flex flex-center'>
           <view style='width:60%;padding-left:1em'>

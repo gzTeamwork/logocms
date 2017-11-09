@@ -3,10 +3,6 @@ let Config = require('./pages/index/config.js')
 
 App({
   onLaunch: function() {
-    wx.showLoading({
-      title: '准备中..',
-    })
-
     let app = this
       // 展示本地存储能力
     let logs = wx.getStorageSync('logs') || []
@@ -73,7 +69,6 @@ App({
             });
           }
         });
-
       }
     })
   },
