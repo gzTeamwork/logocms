@@ -1,8 +1,8 @@
-<view id='{{id}}' isCurrent='{{isCurrent||id}}' class="box {{boxClass}}" style="width:{{W+H}}px;height:{{H}}px">
+<view id='{{compId}}' isCurrent='{{isCurrent||id}}' class="box {{boxClass}}" style="width:{{W+H}}px;height:{{H}}px">
   <view class='content' style='width:{{W}}px' bindtouchstart='sliderHover' bindtouchmove='sliderOver'>
     <slot></slot>
   </view>
-  <view class="plan" style='width:{{H}}px;;height:{{H}}px' catchtap='compPlanTap' data-tid='{{id}}'>
+  <view class="plan" style='width:{{H}}px;;height:{{H}}px' catchtap='compPlanTap' data-id='{{compId}}'>
     {{innerText}}
   </view>
 </view>

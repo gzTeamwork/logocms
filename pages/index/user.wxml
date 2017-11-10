@@ -15,7 +15,7 @@
       待处理 {{ unfinishedList.length }} 项(向左滑动可删除)
     </view>
     <view wx:for="{{unfinishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
-      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
+      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}" bind:compPlanTap='delItemHandle'>
         <view class='flex flex-center'>
           <view style='width:60%;padding-left:1em'>
             <view style='font-weight:900'>{{item.formData.logo_name}}</view>
@@ -46,6 +46,5 @@
       </comp-sliderHover>
     </view>
   </view>
-  <import src="./template/bottomBar.wxml" />
-  <template is="bottomBar" data="{{url:currentUrl}} " />
+  <comp-bottomBar activeUrl="{{currentUrl}}"></comp-bottomBar>
 </view>

@@ -354,7 +354,7 @@ function fromsubmit(page, e) {
     })
     //  表单提交
   params.session_3rd = wx.getStorageSync('session_3rd') || null
-  params.openid = wx.getStorageSync('openid_client') || null
+  params.openid = wx.getStorageSync('openid') || null
   wx.request({
     url: serverUrl + 'design_submit',
     method: 'POST',

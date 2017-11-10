@@ -38,7 +38,7 @@ Date.prototype.Format = function(fmt) { //author: meizz
 /*获取当前页url*/
 function getCurrentPageUrl() {
   var pages = getCurrentPages() //获取加载的页面
-  console.log(pages);
+    // console.log(pages);
   var currentPage = pages[pages.length - 1] //获取当前页面的对象
   var url = currentPage.route || currentPage.__route__ //当前页面url
   return url
@@ -62,21 +62,43 @@ function getCurrentPageUrlWithArgs() {
   return urlWithArgs
 }
 
-function getUser() {
-  let user = wx.getStorageSync('userInfo') || null
-  if (!user) {
-    wx.getUserInfo({
-      success: res => {
-        user = JSON.parse(res.rawData)
-      }
+/**
+ * 简化获取userInfo
+ * [getUser description]
+ * @param  {Boolean} [updated=false] [description]
+ * @return {[type]}                  [description]
+ */
+function getUser(updated = false) {
+
+  let user = wx.getStorageSync('userInfo') || false
+
+  if (false == user || true == updated) {
+    let userInfopromise = wxPromisify(wx.getUserInfo)
+    userInfopromise().then(res => {
+      console.log('重新获取了用户信息');
+      return JSON.parse(res.rawData);
     })
-    return user
   }
+  console.log('提取了缓存的用户信息');
   return user
 }
 
+/**
+ * 获取session_3rd
+ * [get3rd description]
+ * @return {[type]} [description]
+ */
 function get3rd() {
   return wx.getStorageSync('session_3rd') || null;
+}
+
+/**
+ * 获取openid
+ * [getOpenId description]
+ * @return {[type]} [description]
+ */
+function getOpenId() {
+  return wx.getStorageSync('openid') || null;
 }
 
 // 显示繁忙提示
@@ -108,8 +130,28 @@ function showModel(title, content) {
   })
 }
 
+function wxPromisify(fn) {
+  return function(obj = {}) {
+    return new Promise((resolve, reject) => {
+      obj.success = function(res) {
+        resolve(res)
+      }
 
+      obj.fail = function(res) {
+        dfa
+        reject(res)
+      }
 
+      fn(obj)
+    })
+  }
+}
+
+/**
+ * 注册返回函数
+ * [exports description]
+ * @type {Object}
+ */
 module.exports = {
   formatTime: formatTime,
   getCurrentPageUrl: getCurrentPageUrl,
@@ -119,4 +161,6 @@ module.exports = {
   showSuccess: showSuccess,
   showModel: showModel,
   get3rd: get3rd,
+  promise: wxPromisify,
+  getOpenId: getOpenId,
 }

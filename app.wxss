@@ -47,17 +47,3 @@
 view {
   font-size: 28rpx;
 }
-
-.bottom-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 0.5em;
-  background: white;
-  border-top: 1px solid #d00600;
-  z-index: 999;
-}
-
-.active-menu {
-  color: #d00600;
-}

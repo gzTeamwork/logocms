@@ -1,3 +1,9 @@
-<view class="bottomBar">
-
+<view class='bottom-bar flex flex-center' style='flex-direction:row;'>
+  <view class='flex-child flex-center' style='width:50%;' wx:for="{{menus}}" wx:for-item="item">
+    <navigator class="{{item.url==activeUrl?'active-menu':''}}" wx:key="item.url" url="/{{item.url}}" open-type='redirect' >
+      <image src='{{item.url==activeUrl?item.active:item.icon}}' style='width:64rpx;height:64rpx'></image>
+      <view data-cur='{{activeUrl}}'>{{item.label}}</view>
+      <!-- {{item.url}} - {{activeUrl}} -->
+    </navigator>
+  </view>
 </view>

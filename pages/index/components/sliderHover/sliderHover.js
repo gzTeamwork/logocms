@@ -1,5 +1,5 @@
 let tapBegin, tapMove, tapOver;
-
+let Utils = require('./../../../../utils/util.js')
 Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
@@ -13,7 +13,7 @@ Component({
     w: {
       type: Number,
       value: '100%',
-      observer: function (nv, ov) {
+      observer: function(nv, ov) {
         this.setData({
           W: nv
         })
@@ -21,7 +21,7 @@ Component({
     },
     compId: {
       type: String,
-      observer: function (nv, ov) {
+      observer: function(nv, ov) {
         this.setData({
           compId: nv
         })
@@ -29,7 +29,7 @@ Component({
     },
     isCurrent: {
       type: String,
-      observer: function (nv, ov) {
+      observer: function(nv, ov) {
         if (nv != ov) {
           this.sliderOut()
         }
@@ -47,10 +47,14 @@ Component({
   methods: {
     // 这里是一个自定义方法
     // 滑动开始
-    compPlanTap: function (e) {
-      console.log(e)
+    compPlanTap: function(e) {
+      console.log(e);
+      e.detail.datas = {
+        id: e.currentTarget.dataset.id
+      }
+      this.triggerEvent('compPlanTap', e.detail)
     },
-    sliderHover: function (e) {
+    sliderHover: function(e) {
       console.log(e)
       console.log(this.data.compId + '被滑动了')
       tapBegin = {
@@ -59,7 +63,7 @@ Component({
       }
     },
     //  滑动方向
-    sliderOver: function (e) {
+    sliderOver: function(e) {
       let self = this;
       // console.log(e)
       tapMove = {
@@ -86,14 +90,14 @@ Component({
 
     },
     //  失去焦点
-    sliderOut: function (e) {
+    sliderOut: function(e) {
       console.log(this.compId + '被滑出了')
       this.setData({
         boxClass: 'box-hide'
       })
     }
   },
-  ready: function (e) {
+  ready: function(e) {
     console.log('组件被创建..')
   }
 })

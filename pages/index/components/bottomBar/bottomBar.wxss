@@ -1,0 +1,38 @@
+.flex {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height:auto;
+}
+
+.flex>.flex-child {
+  display: flex;
+  height: 100%;
+}
+
+
+.flex-center-h {
+  justify-content: center;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5em;
+  background: white;
+  border-top: 1px solid #d00600;
+  z-index: 999;
+  height:96rpx;
+  text-align: center;
+}
+
+.active-menu {
+  color: #d00600;
+}
