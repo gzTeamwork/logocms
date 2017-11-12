@@ -4,10 +4,9 @@ Component({
       type: String,
       observer: function(nv, ov) {
         if (nv != ov) {
-
           this.setData({
             activeUrl: nv
-          })
+          });
         }
 
       }
@@ -44,4 +43,4 @@ Component({
   ready() {
     console.log(this.data.menus);
   }
-})
+});

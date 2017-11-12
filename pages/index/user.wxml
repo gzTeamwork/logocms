@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" wx:if="{{isReady}}">
   <view class='userPlan flex flex-center'>
     <view class='flex-child flex-center' style='width:50%'>
       <view>
@@ -7,7 +7,7 @@
       <view style='padding:1em;'>{{ userInfo.nickName }} </view>
     </view>
     <view class='flex-child flex-center' style='width:50%;'>
-      <view>需求提交 {{parseInt(unfinishedList.length) + parseInt(finishedList.lenght)}} 次</view>
+      <view>需求提交 {{totals || 0}} 次</view>
     </view>
   </view>
   <view>
@@ -32,6 +32,23 @@
       已处理 {{ finishedList.length || 0}} 项
     </view>
     <view wx:for="{{finishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
+      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
+        <view class='flex flex-center'>
+          <view style='width:60%;padding-left:1em'>
+            <view style='font-weight:900'>{{item.formData.logo_name}}</view>
+            <view>{{ item.postTime }}</view>
+          </view>
+          <view style='width:40%;color:#d00600'>
+            <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
+            <view>{{ item.formData.total_price }}</view>
+          </view>
+        </view>
+      </comp-sliderHover>
+    </view>
+    <view class='listLabel'>
+      其他 {{ finishedList.length || 0}} 项
+    </view>
+    <view wx:for="{{extraList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
       <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' innerText="删除" w="{{screenWidth}}">
         <view class='flex flex-center'>
           <view style='width:60%;padding-left:1em'>
