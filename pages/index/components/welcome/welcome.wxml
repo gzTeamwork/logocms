@@ -1,0 +1,3 @@
+<view class='main'>    
+    <slot wx:if='{{already}}'></slot>
+</view>

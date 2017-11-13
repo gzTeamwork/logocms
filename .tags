@@ -1,0 +1,147 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+env	D:\work\weixin\logocms\.eslintrc.json	/^    "env": {$/;"	function	line:2
+browser	D:\work\weixin\logocms\.eslintrc.json	/^        "browser": true,$/;"	function	line:3
+commonjs	D:\work\weixin\logocms\.eslintrc.json	/^        "commonjs": true,$/;"	function	line:4
+es6	D:\work\weixin\logocms\.eslintrc.json	/^        "es6": true$/;"	function	line:5
+extends	D:\work\weixin\logocms\.eslintrc.json	/^    "extends": ["eslint:recommended","wx-mini-program"],$/;"	function	line:7
+parserOptions	D:\work\weixin\logocms\.eslintrc.json	/^    "parserOptions": {$/;"	function	line:8
+sourceType	D:\work\weixin\logocms\.eslintrc.json	/^        "sourceType": "module"$/;"	function	line:9
+rules	D:\work\weixin\logocms\.eslintrc.json	/^    "rules": {$/;"	function	line:11
+no-console	D:\work\weixin\logocms\.eslintrc.json	/^        "no-console": "off",$/;"	function	line:12
+linebreak-style	D:\work\weixin\logocms\.eslintrc.json	/^        "linebreak-style": [$/;"	function	line:13
+quotes	D:\work\weixin\logocms\.eslintrc.json	/^        "quotes": [$/;"	function	line:17
+semi	D:\work\weixin\logocms\.eslintrc.json	/^        "semi": [$/;"	function	line:21
+files.autoSave	D:\work\weixin\logocms\.wing\settings.json	/^    "files.autoSave": "onFocusChange"$/;"	function	line:3
+onLaunch	D:\work\weixin\logocms\app.js	/^    onLaunch: function(options) {$/;"	function	line:12
+pages	D:\work\weixin\logocms\app.json	/^  "pages": [$/;"	function	line:2
+window	D:\work\weixin\logocms\app.json	/^  "window": {$/;"	function	line:7
+backgroundTextStyle	D:\work\weixin\logocms\app.json	/^    "backgroundTextStyle": "bold",$/;"	function	line:8
+navigationBarBackgroundColor	D:\work\weixin\logocms\app.json	/^    "navigationBarBackgroundColor": "#d00600",$/;"	function	line:9
+navigationBarTitleText	D:\work\weixin\logocms\app.json	/^    "navigationBarTitleText": "Logo设计需求\/标志定制",$/;"	function	line:10
+navigationBarTextStyle	D:\work\weixin\logocms\app.json	/^    "navigationBarTextStyle": "white"$/;"	function	line:11
+compilerOptions	D:\work\weixin\logocms\jsconfig.json	/^   "compilerOptions": {$/;"	function	line:2
+exclude	D:\work\weixin\logocms\jsconfig.json	/^   "exclude": [$/;"	function	line:5
+observer	D:\work\weixin\logocms\pages\index\components\bottomBar\bottomBar.js	/^      observer: function(nv, ov) {$/;"	function	line:5
+ready	D:\work\weixin\logocms\pages\index\components\bottomBar\bottomBar.js	/^  ready() {$/;"	function	line:43
+component	D:\work\weixin\logocms\pages\index\components\bottomBar\bottomBar.json	/^  "component": true$/;"	function	line:2
+observer	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^			observer: function (nv, ov) {$/;"	function	line:16
+observer	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^			observer: function (nv, ov) {$/;"	function	line:24
+observer	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^			observer: function (nv, ov) {$/;"	function	line:32
+compPlanTap	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^		compPlanTap: function (e) {$/;"	function	line:50
+sliderHover	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^		sliderHover: function (e) {$/;"	function	line:57
+sliderOver	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^		sliderOver: function (e) {$/;"	function	line:66
+sliderOut	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^		sliderOut: function (e) {$/;"	function	line:93
+ready	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.js	/^	ready: function (e) {$/;"	function	line:100
+component	D:\work\weixin\logocms\pages\index\components\sliderHover\sliderHover.json	/^  "component": true$/;"	function	line:2
+component	D:\work\weixin\logocms\pages\index\components\welcome\welcome.json	/^    "component": true$/;"	function	line:2
+serverUrl	D:\work\weixin\logocms\pages\index\config.js	/^    serverUrl: function(dev = true ) {$/;"	function	line:2
+module.exports.serverUrl	D:\work\weixin\logocms\pages\index\config.js	/^    serverUrl: function(dev = true ) {$/;"	method	line:2
+viItems	D:\work\weixin\logocms\pages\index\config.js	/^    viItems: function() {$/;"	function	line:9
+module.exports.viItems	D:\work\weixin\logocms\pages\index\config.js	/^    viItems: function() {$/;"	method	line:9
+designSets	D:\work\weixin\logocms\pages\index\config.js	/^    designSets: function() {$/;"	function	line:93
+module.exports.designSets	D:\work\weixin\logocms\pages\index\config.js	/^    designSets: function() {$/;"	method	line:93
+logoStyle	D:\work\weixin\logocms\pages\index\config.js	/^    logoStyle: function() {$/;"	function	line:118
+module.exports.logoStyle	D:\work\weixin\logocms\pages\index\config.js	/^    logoStyle: function() {$/;"	method	line:118
+inputEvent	D:\work\weixin\logocms\pages\index\index.js	/^	inputEvent(e) {$/;"	function	line:101
+designSetChange	D:\work\weixin\logocms\pages\index\index.js	/^	designSetChange(e) {$/;"	function	line:121
+viItemsChange	D:\work\weixin\logocms\pages\index\index.js	/^	viItemsChange(e) {$/;"	function	line:140
+bindFromSubmit	D:\work\weixin\logocms\pages\index\index.js	/^	bindFromSubmit(e) {$/;"	function	line:162
+bindContactUs	D:\work\weixin\logocms\pages\index\index.js	/^	bindContactUs() {$/;"	function	line:166
+viItemChange	D:\work\weixin\logocms\pages\index\index.js	/^	viItemChange(e) {$/;"	function	line:171
+onLoad	D:\work\weixin\logocms\pages\index\index.js	/^	onLoad: function() {$/;"	function	line:175
+onShow	D:\work\weixin\logocms\pages\index\index.js	/^	onShow() {},$/;"	function	line:226
+getUserInfo	D:\work\weixin\logocms\pages\index\index.js	/^	getUserInfo: function(e) {$/;"	function	line:227
+findArray	D:\work\weixin\logocms\pages\index\index.js	/^function findArray(array, feature, all = true) {$/;"	function	line:237
+findArray	D:\work\weixin\logocms\pages\index\index.js	/^function findArray(array, feature, all = true) {$/;"	function	line:237
+wxLogin	D:\work\weixin\logocms\pages\index\index.js	/^\/\/ function wxLogin(func) {$/;"	function	line:265
+fromsubmit	D:\work\weixin\logocms\pages\index\index.js	/^function fromsubmit(page) {$/;"	function	line:327
+complete	D:\work\weixin\logocms\pages\index\index.js	/^				complete: function() {$/;"	function	line:351
+success	D:\work\weixin\logocms\pages\index\index.js	/^		success: function(res) {$/;"	function	line:374
+complete	D:\work\weixin\logocms\pages\index\index.js	/^		complete: function() {$/;"	function	line:389
+fromsubmit	D:\work\weixin\logocms\pages\index\index.js	/^function fromsubmit(page) {$/;"	function	line:327
+usingComponents	D:\work\weixin\logocms\pages\index\index.json	/^  "usingComponents": {$/;"	function	line:2
+comp-bottomBar	D:\work\weixin\logocms\pages\index\index.json	/^    "comp-bottomBar": ".\/components\/bottomBar\/bottomBar"$/;"	function	line:3
+onLoad	D:\work\weixin\logocms\pages\index\user.js	/^  onLoad: function(options){$/;"	function	line:24
+onShow	D:\work\weixin\logocms\pages\index\user.js	/^  onShow: function () {$/;"	function	line:31
+sliderChange	D:\work\weixin\logocms\pages\index\user.js	/^  sliderChange(e) {$/;"	function	line:131
+itemTouch	D:\work\weixin\logocms\pages\index\user.js	/^  itemTouch(e) {$/;"	function	line:137
+delItemHandle	D:\work\weixin\logocms\pages\index\user.js	/^  delItemHandle(e) {$/;"	function	line:140
+success	D:\work\weixin\logocms\pages\index\user.js	/^      success: function (res) {$/;"	function	line:146
+usingComponents	D:\work\weixin\logocms\pages\index\user.json	/^  "usingComponents": {$/;"	function	line:2
+comp-sliderHover	D:\work\weixin\logocms\pages\index\user.json	/^    "comp-sliderHover": ".\/components\/sliderHover\/sliderHover",$/;"	function	line:3
+comp-bottomBar	D:\work\weixin\logocms\pages\index\user.json	/^    "comp-bottomBar": ".\/components\/bottomBar\/bottomBar"$/;"	function	line:4
+onLoad	D:\work\weixin\logocms\pages\logs\logs.js	/^  onLoad: function () {$/;"	function	line:8
+navigationBarTitleText	D:\work\weixin\logocms\pages\logs\logs.json	/^  "navigationBarTitleText": "查看启动日志"$/;"	function	line:2
+description	D:\work\weixin\logocms\project.config.json	/^	"description": "项目配置文件。",$/;"	function	line:2
+setting	D:\work\weixin\logocms\project.config.json	/^	"setting": {$/;"	function	line:3
+urlCheck	D:\work\weixin\logocms\project.config.json	/^		"urlCheck": false,$/;"	function	line:4
+es6	D:\work\weixin\logocms\project.config.json	/^		"es6": true,$/;"	function	line:5
+postcss	D:\work\weixin\logocms\project.config.json	/^		"postcss": true,$/;"	function	line:6
+minified	D:\work\weixin\logocms\project.config.json	/^		"minified": true,$/;"	function	line:7
+newFeature	D:\work\weixin\logocms\project.config.json	/^		"newFeature": true$/;"	function	line:8
+compileType	D:\work\weixin\logocms\project.config.json	/^	"compileType": "miniprogram",$/;"	function	line:10
+libVersion	D:\work\weixin\logocms\project.config.json	/^	"libVersion": "1.6.4",$/;"	function	line:11
+appid	D:\work\weixin\logocms\project.config.json	/^	"appid": "wxb615cb13ae726095",$/;"	function	line:12
+projectname	D:\work\weixin\logocms\project.config.json	/^	"projectname": "%E6%A0%87%E5%BF%97%E5%B1%95%E7%A4%BA",$/;"	function	line:13
+condition	D:\work\weixin\logocms\project.config.json	/^	"condition": {$/;"	function	line:14
+search	D:\work\weixin\logocms\project.config.json	/^		"search": {$/;"	function	line:15
+current	D:\work\weixin\logocms\project.config.json	/^			"current": -1,$/;"	function	line:16
+list	D:\work\weixin\logocms\project.config.json	/^			"list": []$/;"	function	line:17
+conversation	D:\work\weixin\logocms\project.config.json	/^		"conversation": {$/;"	function	line:19
+current	D:\work\weixin\logocms\project.config.json	/^			"current": -1,$/;"	function	line:20
+list	D:\work\weixin\logocms\project.config.json	/^			"list": []$/;"	function	line:21
+miniprogram	D:\work\weixin\logocms\project.config.json	/^		"miniprogram": {$/;"	function	line:23
+current	D:\work\weixin\logocms\project.config.json	/^			"current": 0,$/;"	function	line:24
+list	D:\work\weixin\logocms\project.config.json	/^			"list": [$/;"	function	line:25
+id	D:\work\weixin\logocms\project.config.json	/^					"id": 0,$/;"	function	line:27
+name	D:\work\weixin\logocms\project.config.json	/^					"name": "用户中心",$/;"	function	line:28
+pathName	D:\work\weixin\logocms\project.config.json	/^					"pathName": "pages\/index\/user",$/;"	function	line:29
+query	D:\work\weixin\logocms\project.config.json	/^					"query": ""$/;"	function	line:30
+logocms	D:\work\weixin\logocms\README.md	/^# logocms$/;"	function	line:1
+wxPromisify	D:\work\weixin\logocms\utils\promise.js	/^function wxPromisify(fn) {$/;"	function	line:1
+success	D:\work\weixin\logocms\utils\promise.js	/^      obj.success = function(res) {$/;"	function	line:4
+fail	D:\work\weixin\logocms\utils\promise.js	/^      obj.fail = function(res) {$/;"	function	line:8
+wxPromisify	D:\work\weixin\logocms\utils\promise.js	/^function wxPromisify(fn) {$/;"	function	line:1
+module.exports.wxPromisify	D:\work\weixin\logocms\utils\promise.js	/^  wxPromisify: wxPromisify$/;"	property	line:18
+Format	D:\work\weixin\logocms\utils\util.js	/^Date.prototype.Format = function(fmt) { \/\/author: meizz$/;"	function	line:19
+Date	D:\work\weixin\logocms\utils\util.js	/^Date.prototype.Format = function(fmt) { \/\/author: meizz$/;"	class	line:19
+Date.Format	D:\work\weixin\logocms\utils\util.js	/^Date.prototype.Format = function(fmt) { \/\/author: meizz$/;"	method	line:19
+Date.var.o.M+	D:\work\weixin\logocms\utils\util.js	/^    'M+': this.getMonth() + 1, \/\/月份$/;"	property	line:21
+getCurrentPageUrl	D:\work\weixin\logocms\utils\util.js	/^function getCurrentPageUrl() {$/;"	function	line:39
+getCurrentPageUrl	D:\work\weixin\logocms\utils\util.js	/^function getCurrentPageUrl() {$/;"	function	line:39
+getCurrentPageUrlWithArgs	D:\work\weixin\logocms\utils\util.js	/^function getCurrentPageUrlWithArgs() {$/;"	function	line:48
+getCurrentPageUrlWithArgs	D:\work\weixin\logocms\utils\util.js	/^function getCurrentPageUrlWithArgs() {$/;"	function	line:48
+getUser	D:\work\weixin\logocms\utils\util.js	/^function getUser(updated = false) {$/;"	function	line:71
+getUser	D:\work\weixin\logocms\utils\util.js	/^function getUser(updated = false) {$/;"	function	line:71
+get3rd	D:\work\weixin\logocms\utils\util.js	/^function get3rd() {$/;"	function	line:91
+get3rd	D:\work\weixin\logocms\utils\util.js	/^function get3rd() {$/;"	function	line:91
+getOpenId	D:\work\weixin\logocms\utils\util.js	/^function getOpenId() {$/;"	function	line:100
+getOpenId	D:\work\weixin\logocms\utils\util.js	/^function getOpenId() {$/;"	function	line:100
+showBusy	D:\work\weixin\logocms\utils\util.js	/^function showBusy(text) {$/;"	function	line:105
+showBusy	D:\work\weixin\logocms\utils\util.js	/^function showBusy(text) {$/;"	function	line:105
+showSuccess	D:\work\weixin\logocms\utils\util.js	/^function showSuccess(text) {$/;"	function	line:115
+showSuccess	D:\work\weixin\logocms\utils\util.js	/^function showSuccess(text) {$/;"	function	line:115
+showModel	D:\work\weixin\logocms\utils\util.js	/^function showModel(title, content) {$/;"	function	line:123
+showModel	D:\work\weixin\logocms\utils\util.js	/^function showModel(title, content) {$/;"	function	line:123
+wxPromisify	D:\work\weixin\logocms\utils\util.js	/^function wxPromisify(fn) {$/;"	function	line:133
+success	D:\work\weixin\logocms\utils\util.js	/^      obj.success = function(res) {$/;"	function	line:136
+fail	D:\work\weixin\logocms\utils\util.js	/^      obj.fail = function(res) {$/;"	function	line:140
+wxPromisify	D:\work\weixin\logocms\utils\util.js	/^function wxPromisify(fn) {$/;"	function	line:133
+module.exports.formatTime	D:\work\weixin\logocms\utils\util.js	/^  formatTime: formatTime,$/;"	property	line:154
+module.exports.getCurrentPageUrl	D:\work\weixin\logocms\utils\util.js	/^  getCurrentPageUrl: getCurrentPageUrl,$/;"	property	line:155
+module.exports.getCurrentPageUrlWithArgs	D:\work\weixin\logocms\utils\util.js	/^  getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs,$/;"	property	line:156
+module.exports.getUser	D:\work\weixin\logocms\utils\util.js	/^  getUser: getUser,$/;"	property	line:157
+module.exports.showBusy	D:\work\weixin\logocms\utils\util.js	/^  showBusy: showBusy,$/;"	property	line:158
+module.exports.showSuccess	D:\work\weixin\logocms\utils\util.js	/^  showSuccess: showSuccess,$/;"	property	line:159
+module.exports.showModel	D:\work\weixin\logocms\utils\util.js	/^  showModel: showModel,$/;"	property	line:160
+module.exports.get3rd	D:\work\weixin\logocms\utils\util.js	/^  get3rd: get3rd,$/;"	property	line:161
+module.exports.promise	D:\work\weixin\logocms\utils\util.js	/^  promise: wxPromisify,$/;"	property	line:162
+module.exports.getOpenId	D:\work\weixin\logocms\utils\util.js	/^  getOpenId: getOpenId,$/;"	property	line:163
+weixin_get_session_3rd	D:\work\weixin\logocms\utils\wxHelper.js	/^let weixin_get_session_3rd = function(app) {$/;"	function	line:5
+let	D:\work\weixin\logocms\utils\wxHelper.js	/^let weixin_get_session_3rd = function(app) {$/;"	function	line:5
+let.weixin_get_session_3rd	D:\work\weixin\logocms\utils\wxHelper.js	/^    weixin_get_session_3rd: weixin_get_session_3rd$/;"	property	line:87

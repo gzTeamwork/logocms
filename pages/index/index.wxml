@@ -1,6 +1,8 @@
 <!-- index.wxml -->
+<comp-welcome>
+</comp-welcome>
 <view class="container">
-  <form bindsubmit="bindFromSubmit">
+  <form bindsubmit="bindFromSubmit" wx:if='{{!isSubmit}}'>
     <import src="./template/form.wxml" />
     <view wx:for="{{fromData}}" wx:key='name'>
       <template is="input" data="{{item:item}}" />
@@ -11,10 +13,37 @@
       <view>策略先行 系统导入 资深团队 表现精准 快速反应 高效执行 </view>
       <view>切实帮助企业解决品牌问题，助力品牌成长</view>
       <button type='default' formType='submit'>点击提交</button>
-      <view>提交后,会有专员跟您联系</view>
+      <view>需求提交后24小时之内会有专员跟您联系</view>
       <view>或者</view>
       <button type='primary' bindtap='bindContactUs'>直接联系我们</button>
     </view>
   </form>
+<view wx:else style="text-align:center;padding-top:64rpx">
+    <image src="{{userInfo.avatarUrl}}" style="width:256rpx;height:256rpx" />
+    <view>
+      {{userInfo.nickName}}
+    </view>
+    <view>
+      您提交的Logo设计需求
+    </view>
+    <view>
+      [{{fromParams.logo_name}}]
+    </view>
+    <view style="color:#39b54a;font-size:250%">
+      已经受理啦
+    </view>
+    <view>
+      需求提交后24小时之内会有专员跟您联系
+    </view>
+    <view>
+
+      或
+    </view>
+    <button type='primary' bindtap='bindContactUs'>直接联系我们</button>
+    <view>
+      更多精彩内容,请扫描或长按识别二维码
+    </view>
+      <image src="../../assets/imgs/gh_4be290a950d3_344.jpg" style="width:256rpx;height:256rpx" />
+  </view>
    <comp-bottomBar activeUrl="{{currentUrl}}"></comp-bottomBar>
 </view>

@@ -34,7 +34,7 @@
 
   <!-- textarea -->
   <block wx:if='{{ model == "textarea" }}'>
-    <textarea name='{{name}}' id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" />
+    <textarea name='{{name}}' id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" style="z-index:1" />
   </block>
 
   <!-- single -->

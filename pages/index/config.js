@@ -1,5 +1,5 @@
 module.exports = {
-    serverUrl: function(dev = true ) {
+    serverUrl: function(dev = false ) {
         //  服务器接口
         let localServerUrl = 'http://tiramisu.localhost.com/diavision/weixin/';
         let remoteServerUrl =
@@ -10,11 +10,11 @@ module.exports = {
         //  vi项目配置
         return [{
             id: '1',
-            name: '标志标准色\n（印刷色）',
+            name: '标志标准印刷色',
             price: 200
         }, {
             id: '2',
-            name: '企业辅助色\n（系）',
+            name: '企业辅助色（系）',
             price: 200
         }, {
             id: '3',
@@ -30,7 +30,7 @@ module.exports = {
             price: 200
         }, {
             id: '6',
-            name: '标志特定色彩效果展示',
+            name: '标志特定色彩展示',
             price: 200
         }, {
             id: '7',
@@ -117,9 +117,9 @@ module.exports = {
     },
     logoStyle: function() {
         return [{
-            name: '图标标准字'
+            name: '图标+标准字体'
         }, {
-            name: '图标设计字'
+            name: '图标+设计字体'
         }, {
             name: '单字体设计'
         }, {
@@ -127,7 +127,7 @@ module.exports = {
         }, {
             name: '图文融合'
         }, {
-            name: '图标含文字'
+            name: '图标包含文字'
         }];
     }
 };

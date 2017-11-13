@@ -3,18 +3,13 @@
   background: transparent;
   display: flex;
   justify-content: center;
-  transform: translateX(0);
   border-bottom:1px solid #ffeffe;
+  position: relative
+}
+.box-deled{
+  opacity: 0.6;
 }
 
-.box-show {
-  transition: all 0.5s;
-  transform: translateX(-96px);
-}
-.box-hide{
-  transition: all 0.5s;
-  transform: translateX(0);
-}
 
 .content {
   width: 100%;
@@ -25,8 +20,10 @@
 }
 
 .plan {
-  transition: all 0.5s;
+  /* transition: all 1.5s; */
   background: transparent;
+  /* background: #d00600; */
+  
   color: white;
   display: flex;
   align-items: center;

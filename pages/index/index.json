@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "comp-bottomBar": "./components/bottomBar/bottomBar"
+    "comp-bottomBar": "./components/bottomBar/bottomBar",
+    "comp-welcome": "./components/welcome/welcome"
   }
 }

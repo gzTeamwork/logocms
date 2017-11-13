@@ -1,8 +1,10 @@
-<view id='{{compId}}' isCurrent='{{isCurrent||id}}' class="box {{boxClass}}" style="width:{{W+H}}px;height:{{H}}px">
-  <view class='content' style='width:{{W}}px' bindtouchstart='sliderHover' bindtouchmove='sliderOver'>
+<view id='{{compId}}' bindtouchstart='sliderHover' bindtouchmove='sliderOver' catchtouchend='sliderEnd' isCurrent='{{isCurrent||id}}' class="box {{boxClass}} {{hasDel?'box-del':'box-deled'}}" animation="{{boxAnimate}}" style="width:{{W+H}}px;height:{{H}}px">
+  <view class='content' style='width:{{W}}px' >
     <slot></slot>
   </view>
-  <view class="plan" style='width:{{H}}px;;height:{{H}}px' catchtap='compPlanTap' data-id='{{compId}}'>
+  <view class="plan" style='width:{{H}}px;;height:{{H}}px' catchtap='compPlanTap' data-id='{{compId}}' wx:if='{{hasDel}}'>
     {{innerText}}
+  </view>
+  <view class="" style='width:{{H}}px;;height:{{H}}px' data-id='{{compId}}' wx:else>
   </view>
 </view>
