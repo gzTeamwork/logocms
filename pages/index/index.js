@@ -14,6 +14,7 @@ var fromParams = {};
 
 Page({
   data: {
+    mode:'edit',
     fromData: [{
       name: 'logo_name',
       value: '',
@@ -22,7 +23,6 @@ Page({
       isMust: true,
       model: 'input'
     },
-    // { name: 'design_set', lebal: '设计套餐', preText: '请选择您的套餐', isMust: true, model: 'select', value: 0, array: ['Logo设计套餐A', 'Logo设计套餐B', 'VIS设计套餐'] },
     {
       name: 'design_set',
       lebal: '设计套餐',
@@ -172,27 +172,57 @@ Page({
     console.log(e);
   },
   //  事件处理函数
-  onLoad: function () {
+  onLoad: function (options) {
     let self = this;
 
-
-    let fromData = this.data.fromData;
-    fromData[2].value = viItems;
-    let userInfo = utils.getUser();
-    this.setData({
-      currentUrl: utils.getCurrentPageUrl(),
-      fromData: fromData,
-      userInfo: userInfo,
-    });
-    this.designSetChange({
-      target: {
-        id: 'design_set'
-      },
-      detail: {
-        value: 0
-      }
-    });
-
+    console.log(options);
+    if (options.id !== undefined) {
+      //  当页面传入id参数,则是查阅模式
+      let params = {};
+      params.session_3rd = wx.getStorageSync('session_3rd') || null;
+      params.openid = wx.getStorageSync('openid') || null;
+      params.id = options.id;
+      wx.request({
+        url: serverUrl + 'get_user_submits',
+        data: params,
+        success: res => {
+          console.log(res);
+          if (res.statusCode === 200 && res.data.code === 1) {
+            let item = JSON.parse(res.data.content[0].from_data);
+            let fromData = self.data.fromData;
+            for (let key in fromData) {
+              try {
+                fromData[key].value = item[fromData[key].name]
+                fromData[key].disabled = true;
+              } catch (e) {
+                console.log('多鬼鱼');
+              }
+            }
+            self.setData({
+              fromData: fromData,
+              mode:'look',
+            })
+          }
+        }
+      });
+    } else {
+      let fromData = this.data.fromData;
+      fromData[2].value = viItems;
+      let userInfo = utils.getUser();
+      this.setData({
+        currentUrl: utils.getCurrentPageUrl(),
+        fromData: fromData,
+        userInfo: userInfo,
+      });
+      this.designSetChange({
+        target: {
+          id: 'design_set'
+        },
+        detail: {
+          value: 0
+        }
+      });
+    }
   },
   onShow() { },
 });

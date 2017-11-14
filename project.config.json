@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -21,13 +21,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "用户中心",
 					"pathName": "pages/index/user",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "查看提交",
+					"pathName": "pages/index/index",
+					"query": "id=68"
 				}
 			]
 		}

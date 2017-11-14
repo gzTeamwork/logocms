@@ -17,12 +17,12 @@
 
   <!-- input -->
   <block wx:if='{{ model == "input"}}'>
-    <input id='{{name}}' name='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next' type='{{datatype||"text"}}' maxlength='{{maxlength||40}}'></input>
+    <input id='{{name}}' name='{{name}}' type='text' data-key='{{key}}' value='{{value}}' bindblur='inputEvent' placeholder='{{preText}}' confirm-type='next' type='{{datatype||"text"}}' maxlength='{{maxlength||40}}' disabled='{{disabled||false}}'></input>
   </block>
 
   <!-- select -->
   <block wx:if='{{ model == "select" }}'>
-    <picker name='{{name}}' id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}" range-key="name">
+    <picker name='{{name}}' id='{{name}}' mode='selector' bindchange="designSetChange" value="{{value}}" range="{{array}}" range-key="name" disabled='{{disabled||false}}'>
       <view class="picker">
         {{array[value].name}}
       </view>
@@ -34,7 +34,7 @@
 
   <!-- textarea -->
   <block wx:if='{{ model == "textarea" }}'>
-    <textarea name='{{name}}' id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" style="z-index:1" />
+    <textarea name='{{name}}' id='{{name}}' placeholder="{{preText}}" bindblur="inputEvent" maxlength="140" value="{{value}}" style="z-index:1" disabled='{{disabled||false}}' />
   </block>
 
   <!-- single -->
@@ -43,7 +43,7 @@
       <label wx:for='{{array}}' wx:for-index="key" wx:key='value' style='width:50%;display:inline-block;text-align:center'>
         <view style='padding:0.5rem'>
           <image mode='aspectFill' src='../../assets/imgs/{{key+1}}.jpg' style='width:200rpx;height:164rpx'></image>
-          <radio checked='{{key == value}}' value='{{key}}'>{{item.name}}</radio>
+          <radio checked='{{key == value}}'  disabled="{{disabled ? true : false}}" value='{{key}}' >{{item.name}}</radio>
         </view>
       </label>
     </radio-group>
@@ -51,10 +51,10 @@
 
   <!-- multi -->
   <block wx:if='{{ model == "multi" }}'>
-    <checkbox-group name='{{name}}' id='{{name}}' bindchange="viItemsChange">
+    <checkbox-group name='{{name}}' id='{{name}}' bindchange="viItemsChange" >
       <label class="checkbox" wx:for="{{value}}" wx:key='{{item.name}}' wx:for-item="item" style='width:50%;display:inline-block'>
         <view style='padding-top:1rem'>
-          <checkbox value="{{item.name}}" checked="{{item.checked || false}}" data-price='{{item.price}}' disabled='{{item.disable || false}}' />{{item.name}}
+          <checkbox value="{{item.name}}" checked="{{item.checked || false}}" data-price='{{item.price}}' disabled='{{disabled || item.disable || false}}' />{{item.name}}
         </view>
       </label>
     </checkbox-group>

@@ -1,4 +1,4 @@
-.box {
+.slider {
   width: 100%;
   background: transparent;
   display: flex;
@@ -6,25 +6,16 @@
   border-bottom:1px solid #ffeffe;
   position: relative
 }
-.box-deled{
-  opacity: 0.6;
-}
-
 
 .content {
   width: 100%;
 }
 
-.box-show .plan {
+.slider-show .plan {
   background: #d00600;
 }
 
 .plan {
-  /* transition: all 1.5s; */
-  background: transparent;
-  /* background: #d00600; */
-  
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;

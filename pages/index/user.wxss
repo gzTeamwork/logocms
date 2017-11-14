@@ -1,16 +1,36 @@
 .userPlan {
-  text-align: center;
-  background: #d00600;
-  color: white;
-  padding: 0.5em;
+    padding: 0.5em;
+    background: #d00600;
+    color: white;
+}
+
+.btn-success,
+.btn-danger,
+.btn-info {
+    height: 100%;
+    text-align: center;
+    color: white;
 }
 
 .listLabel {
-  padding: 0.5em;
-  background: #f2f2f2;
-  color: #4d4d4d;
+    padding: 0.5em;
+    background: #f2f2f2;
+    color: #4d4d4d;
 }
 
-.wx-avatar{
-  border-radius: 1em;
+.wx-avatar {
+    border-radius: 1em;
+}
+
+.btn-success {
+    background: #2ea527;
+}
+
+.btn-danger {
+    background: #d00600;
+}
+
+.btn-info {
+    background: #eeeeee;
+    color: #333333;
 }
