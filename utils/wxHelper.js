@@ -17,9 +17,11 @@ let weixin_get_session_3rd = function() {
             let encryptData = getUserInfo_res['encryptData'];
             let encryptedData = getUserInfo_res['encryptedData'];
             //注意是encryptedData不是encryptData...坑啊
-            let iv = login_res['iv'];
+            let iv = getUserInfo_res['iv'];
+            let app = getApp();
+            app.globalData.userInfo = getUserInfo_res['userInfo'];
             wx.setStorageSync('userInfo', getUserInfo_res['userInfo']);
-            // app.globalData.userInfo = getUserInfo_res['userInfo'];
+
             result['userInfo'] = getUserInfo_res['userInfo'];
             let serverCheckLoginPromise = Utils.promise(wx.request);
             serverCheckLoginPromise({
@@ -50,27 +52,53 @@ let weixin_get_session_3rd = function() {
                         data: checkLogin_res.data.content.openid
                     });
                     result['session_3rd'] = checkLogin_res.data.content.session_3rd;
-                    result['openid'] = checkLogin_res.data.content.session_3rd;
+                    result['openid'] = checkLogin_res.data.content.openid;
+                    //  同步用户信息 - 可异步执行
+                    wx.request({
+                        url: Config.serverUrl() + 'sync_user',
+                        data: {
+                            code: code,
+                            rawData: rawData,
+                            signature: signature,
+                            encryptData: encryptData,
+                            iv: iv,
+                            encryptedData: encryptedData,
+                            session_3rd: checkLogin_res.data.content.session_3rd,
+                            openid: checkLogin_res.data.content.openid,
+                        },
+                        complete: res => {
+                            console.log(res);
+
+                        }
+                    })
                 }
                 // 数据准备完毕,刷新页面
-                // let curUrl = Utils.getCurrentPageUrl();
-                // console.log('刷新当前页面' + curUrl);
                 let app = getApp();
                 app.globalData.isReady = true;
                 return true;
-                // wx.reLaunch({
-                //     url: '/' + curUrl
-                // });
             });
         });
     }).catch(login_catch => {
+        let reTry = wx.getStorageSync('reTry') || 1;
+
+        if (reTry < 3) {
             console.log(login_catch);
-            setTimeout(_ => {
-                    weixin_get_session_3rd();
-                }, 1500
-            );
+            setTimeout(() => {
+                weixin_get_session_3rd();
+            }, 2000);
+            reTry++;
+        } else {
+            wx.showToast({
+                title: '数据准备失败',
+                icon: 'loading',
+                duration: 2000,
+            });
+        }
+
+        wx.setStorageSync('reTry');
+
     });
-return false;
+    return false;
 
 };
 

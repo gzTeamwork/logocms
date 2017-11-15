@@ -1,4 +1,3 @@
-let utils = require('../../../../utils/util');
 let wxHelper = require('../../../../utils/wxHelper');
 Component({
     options: {

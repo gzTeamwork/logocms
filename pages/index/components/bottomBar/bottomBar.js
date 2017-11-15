@@ -11,16 +11,6 @@ Component({
 
             }
         },
-        // menus: {
-        //   type: Array,
-        //   observer: function(nv, ov) {
-        //     if (nv != ov && nv.length > 1) {
-        //       this.setData({
-        //         menus: nv
-        //       })
-        //     }
-        //   }
-        // }
     },
     data: {
         activeUrl: '',
@@ -41,6 +31,6 @@ Component({
 
     },
     ready() {
-        console.log(this.data.menus);
+
     }
 });

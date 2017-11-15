@@ -1,5 +1,4 @@
 let tapBegin, tapMove;
-let utils = require('./../../../../utils/util.js');
 //  动画类
 let animate = wx.createAnimation({
   duration: 400,

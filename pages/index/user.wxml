@@ -1,86 +1,88 @@
-<comp-welcome>
-</comp-welcome>
+<comp-welcome></comp-welcome>
 
 <view class="container">
-  <view class='userPlan flex flex-center'>
-    <view class='flex-child flex-center' style='width:50%'>
-      <view>
-        <image class='wx-avatar' src='{{userInfo.avatarUrl}}' style='width:128rpx;height:128rpx'></image>
-      </view>
-      <view style='padding:1em;'>{{ userInfo.nickName }}
-      </view>
-    </view>
-    <view class='flex-child flex-center' style='width:50%;'>
-      <view>需求提交了
-        <text style="font-size:250%">{{totals || 0}}</text>次</view>
-    </view>
-  </view>
-  <view class='userPlan'>
-    <view>提交记录 : {{lastSubmitExpire}}</view>
-  </view>
-  <view>
-    <view class='listLabel'>
-      待处理 {{ unfinishedList.length }} 项(向左滑动可撤销)
-    </view>
-    <view wx:for="{{unfinishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
-      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' width="{{screenWidth}}" hasSlider="1">
-        <view class='flex flex-center' slot="sliderItem">
-          <view style='width:60%;padding-left:1em'>
-            <view style='font-weight:900'>{{item.formData.logo_name}}</view>
-            <view>{{ item.postTime }}</view>
-          </view>
-          <view style='width:40%;color:#d00600'>
-            <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
-            <view>¥{{ item.formData.total_price||0 }}</view>
-          </view>
+    <view class='userPlan flex flex-center'>
+        <view class='flex-child flex-center' style='width:50%'>
+            <view>
+                <image class='wx-avatar' src='{{userInfo.avatarUrl}}' style='width:128rpx;height:128rpx'></image>
+            </view>
+            <view style='padding:1em;'>{{ userInfo.nickName }}
+            </view>
         </view>
-        <view slot="sliderPlan" class='flex flex-center'>
-          <view catchtap='delItemHandle' data-id="{{item.id}}" class='flex flex-center btn-danger'>撤销</view>
+        <view class='flex-child flex-center' style='width:50%;'>
+            <view>需求提交了
+                <text style="font-size:250%">{{totals || 0}}</text>次</view>
         </view>
-      </comp-sliderHover>
     </view>
-    <view class='listLabel'>
-      已处理 {{ finishedList.length || 0}} 项
+    <view class='userPlan'>
+        <view>提交记录 : {{lastSubmitExpire}}</view>
     </view>
-    <view wx:for="{{finishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
-      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' width="{{screenWidth}}" hasSlider="2">
-        <view class='flex flex-center' slot="sliderItem">
-          <view style='width:60%;padding-left:1em'>
-            <view style='font-weight:900'>{{item.formData.logo_name}}</view>
-            <view>{{ item.postTime }}</view>
-          </view>
-          <view style='width:40%;color:#2ea527'>
-            <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
-            <view>¥{{ item.formData.total_price||0 }}</view>
-          </view>
+    <view>
+        <view class='listLabel'>
+            待处理 {{ unfinishedList.length }} 项(向左滑动可撤销)
         </view>
-        <view slot="sliderPlan" class='flex flex-center'>
-          <view catchtap='lookHandle' data-id="{{item.id}}" class='flex flex-center btn-info'>查看</view>
-          <view class='flex flex-center btn-success'>已处理</view>
+        <view wx:for="{{unfinishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
+            <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' width="{{screenWidth}}" hasSlider="1">
+                <view class='flex flex-center' slot="sliderItem">
+                    <view style='width:60%;padding-left:1em'>
+                        <view style='font-weight:900'>{{item.formData.logo_name}}</view>
+                        <view>{{ item.postTime }}</view>
+                    </view>
+                    <view style='width:40%;color:#d00600'>
+                        <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
+                        <view>¥{{ item.formData.total_price||0 }}</view>
+                    </view>
+                </view>
+                <view slot="sliderPlan" class='flex flex-center'>
+                    <view catchtap='delItemHandle' data-id="{{item.id}}" class='flex flex-center btn-danger'>撤销</view>
+                </view>
+            </comp-sliderHover>
         </view>
-      </comp-sliderHover>
-    </view>
+        <view class='listLabel'>
+            已处理 {{ finishedList.length || 0}} 项
+        </view>
+        <view wx:for="{{finishedList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
+            <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' width="{{screenWidth}}" hasSlider="2">
+                <view class='flex flex-center' slot="sliderItem">
+                    <view style='width:60%;padding-left:1em'>
+                        <view style='font-weight:900'>{{item.formData.logo_name}}</view>
+                        <view>{{ item.postTime }}</view>
+                    </view>
+                    <view style='width:40%;color:#2ea527'>
+                        <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
+                        <view>¥{{ item.formData.total_price||0 }}</view>
+                    </view>
+                </view>
+                <view slot="sliderPlan" class='flex flex-center'>
+                    <view catchtap='lookHandle' data-id="{{item.id}}" class='flex flex-center btn-info'>查看</view>
+                    <button style="border:none;border-radius:0;" open-type="share" data-id="{{item.id}}" class='flex flex-center btn-success'>
+            <view>分享</view>
+          </button>
+                </view>
+            </comp-sliderHover>
+        </view>
 
-    <view class='listLabel'>
-      放弃 {{ extraList.length || 0}} 项
-    </view>
-    <view wx:for="{{extraList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
-      <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' width="{{screenWidth}}" hasSlider="1">
-        <view class='flex flex-center' slot="sliderItem">
-          <view style='width:60%;padding-left:1em'>
-            <view style='font-weight:900'>{{item.formData.logo_name}}</view>
-            <view>{{ item.postTime }}</view>
-          </view>
-          <view style='width:40%;color:#333333'>
-            <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
-            <view>¥{{ item.formData.total_price||0 }}</view>
-          </view>
+        <view class='listLabel'>
+            放弃 {{ extraList.length || 0}} 项
         </view>
-        <view slot="sliderPlan" class='flex flex-center'>
+        <view wx:for="{{extraList}}" wx:for-item="item" wx:key="item.id" bindtap='sliderChange' id="{{item.id}}">
+            <comp-sliderHover compId='{{item.id}}' isCurrent='{{currentSlider}}' width="{{screenWidth}}" hasSlider="0">
+                <view class='flex flex-center' slot="sliderItem">
+                    <view style='width:60%;padding-left:1em'>
+                        <view style='font-weight:900'>{{item.formData.logo_name}}</view>
+                        <view>{{ item.postTime }}</view>
+                    </view>
+
+                    <view style='width:40%;color:#333333'>
+                        <view style='font-weight:900'>{{ designSetArray[item.formData.design_set].name }}</view>
+                        <view>¥{{ item.formData.total_price||0 }}</view>
+                    </view>
+                </view>
+                <!--<view slot="sliderPlan" class='flex flex-center'>
           <view catchtap='redoHandle' data-id="{{item.id}}" class='flex flex-center btn-info'>重新提交</view>
+        </view>-->
+            </comp-sliderHover>
         </view>
-      </comp-sliderHover>
     </view>
-  </view>
-  <comp-bottomBar activeUrl="{{currentUrl}}"></comp-bottomBar>
+    <comp-bottomBar activeUrl="{{currentUrl}}"></comp-bottomBar>
 </view>
