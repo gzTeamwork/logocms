@@ -16,6 +16,7 @@
     </view>
     <view class='userPlan'>
         <view>提交记录 : {{lastSubmitExpire}}</view>
+        <view bindtap="updateUser" style="text-align: center;padding:0.5em;"><text style="cursor: pointer">刷新</text></view>
     </view>
     <view>
         <view class='listLabel'>

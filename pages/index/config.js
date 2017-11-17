@@ -1,5 +1,5 @@
 module.exports = {
-    serverUrl: function(dev = false ) {
+    serverUrl: function(dev = true ) {
         //  服务器接口
         let localServerUrl = 'http://tiramisu.localhost.com/diavision/weixin/';
         let remoteServerUrl =

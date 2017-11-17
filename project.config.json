@@ -27,7 +27,8 @@
 					"id": 0,
 					"name": "用户中心",
 					"pathName": "pages/index/user",
-					"query": ""
+					"query": "",
+					"scene": "1007"
 				},
 				{
 					"id": -1,

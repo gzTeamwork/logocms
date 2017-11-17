@@ -2,7 +2,7 @@
  * @Author: Azusakuo 
  * @Date: 2017-11-15 09:12:26 
  * @Last Modified by: Azusakuo
- * @Last Modified time: 2017-11-15 15:48:32
+ * @Last Modified time: 2017-11-17 10:46:52
  */
 //获取应用实例
 const app = getApp();
@@ -127,6 +127,14 @@ Page({
             withShareTicket: true
         });
     },
+    updateUser(e) {
+        wx.getUserInfo({
+            success: res => {
+                console.log(res);
+
+            }
+        });
+    },
     onShareAppMessage: function(res) {
         let self = this;
 
@@ -138,7 +146,7 @@ Page({
         }
         return {
             title: self.data.userInfo.nickName + '的Logo设计需求',
-            path: '/pages/index?id=' + res.target.dataset.id,
+            path: '/pages/index/index?id=' + res.target.dataset.id,
             success: function(res) {
                 // 转发成功
                 wx.showToast({
