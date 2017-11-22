@@ -146,7 +146,7 @@ Page({
         }
         return {
             title: self.data.userInfo.nickName + '的Logo设计需求',
-            path: '/pages/index/index?id=' + res.target.dataset.id,
+            path: 'pages/index/index?id=' + res.target.dataset.id,
             success: function(res) {
                 // 转发成功
                 wx.showToast({
