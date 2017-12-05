@@ -1,7 +1,8 @@
 {
-    "usingComponents": {
-        "comp-sliderHover": "./components/sliderHover/sliderHover",
-        "comp-bottomBar": "./components/bottomBar/bottomBar",
-        "comp-welcome": "./components/welcome/welcome"
-    }
+  "usingComponents": {
+    "comp-sliderHover": "./components/sliderHover/sliderHover",
+    "comp-bottomBar": "./components/bottomBar/bottomBar",
+    "comp-welcome": "./components/welcome/welcome",
+    "comp-image": "./components/imageElement/imageElement"
+  }
 }

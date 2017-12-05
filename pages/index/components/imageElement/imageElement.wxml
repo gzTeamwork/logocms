@@ -1,0 +1,2 @@
+<!--pages/index/components/imageElement.wxml-->
+<image class="{{imageClass||''}}" src="{{imageUrl||''}}" mode="{{imageMode}}" style="{{imageStyle||''}}" bindtap="iamgeTapHandle" lazy-load="" binderror="" bindload="" data-url="{{imageUrl||''}}"></image>
